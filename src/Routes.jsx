@@ -11,8 +11,8 @@ function Router() {
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/houses/:id/edit' element={<HouseEdit />} />
-                <Route path='/houses/login' element={<Login />} />
-                <Route path='/houses/bookings' element={<Bookings />} />
+                <Route path='/login' element={<Login />} />
+                <Route path='/bookings' element={<Bookings />} />
             </Routes>
         </BrowserRouter>
     )
