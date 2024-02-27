@@ -1,8 +1,9 @@
 function HouseEdit() {
-    return (
-        <div>
-            <p>Hello from HouseEdit</p>
-        </div>
-    )
+  return (
+    <div className="grid bg-pink-200 gap-8 grid-cols-2 ">
+      <div className="bg-pink-600">1</div>
+      <div className="bg-pink-600">2</div>
+    </div>
+  )
 }
 export default HouseEdit
