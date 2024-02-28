@@ -1,6 +1,9 @@
+import Nav from './Nav'
+
 function Houses() {
   return (
     <>
+      <Nav />
       <div className="flex justify-between bg-blue-200">
         <div className="bg-blue-600">1</div>
         <div className="bg-blue-600">2</div>
