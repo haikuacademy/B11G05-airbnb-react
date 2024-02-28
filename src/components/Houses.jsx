@@ -5,16 +5,18 @@ import Filter from './Filter'
 function Houses() {
   return (
     <>
-      <Nav />
-      <Filter />
-      <div className="grid bg-pink-200 gap-4 grid-cols-5 ">
-        <HouseCard />
-        <HouseCard />
-        <HouseCard />
-        <HouseCard />
-        <HouseCard />
-        <HouseCard />
-        <HouseCard />
+      <div className=" container mx-auto">
+        <Nav />
+        <Filter />
+        <div className="grid gap-4 grid-cols-5 ">
+          <HouseCard />
+          <HouseCard />
+          <HouseCard />
+          <HouseCard />
+          <HouseCard />
+          <HouseCard />
+          <HouseCard />
+        </div>
       </div>
     </>
   )
