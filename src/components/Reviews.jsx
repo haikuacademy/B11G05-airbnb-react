@@ -18,7 +18,13 @@ function Review() {
     <div className="border border-gray-300 rounded-sm col-span-2 p-5">
       <div>
         <div className="flex col-span-2justify-start gap-1">
-          <div className=" bg-blue-600">5.1</div>
+          <div className=" rounded-full w-10 h-10 mr-3">
+            <img
+              src="https://randomuser.me/api/portraits/men/84.jpg"
+              alt="user profile of Mike Lino"
+              className="rounded-full"
+            />
+          </div>
           <div>
             <div className=" text-gray-400">22 Jan 2024</div>
             <div>Mike Lino</div>
