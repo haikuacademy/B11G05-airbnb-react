@@ -19,6 +19,7 @@ function House() {
               <img
                 src="https://randomuser.me/api/portraits/women/85.jpg"
                 alt="User profile photo"
+                className="rounded-full h-14 w-14"
               />
             </div>
             <div>
