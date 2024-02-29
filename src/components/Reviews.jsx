@@ -12,7 +12,7 @@ function Reviews() {
             <div className=" rounded-full w-10 h-10 mr-3">
               <img
                 src="https://randomuser.me/api/portraits/men/84.jpg"
-                alt="Mike Lino profile image"
+                alt="user profile of Mike Lino"
                 className="rounded-full"
               />
             </div>
