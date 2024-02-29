@@ -4,8 +4,8 @@ function HouseEdit() {
   return (
     <div className="container mx-auto">
       <Nav />
-      <div className="border border-gray-200 p-2 rounded-md mt-2">
-        <form>
+      <form>
+        <div className="border border-gray-200 p-2 rounded-md mt-2">
           <div className="grid gap-32 grid-cols-2 ">
             {/* col 1 */}
             <div className="grid items-center">
@@ -105,8 +105,8 @@ function HouseEdit() {
               Cancel
             </button>
           </div>
-        </form>
-      </div>
+        </div>
+      </form>
     </div>
   )
 }
