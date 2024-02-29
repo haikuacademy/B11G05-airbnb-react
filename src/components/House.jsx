@@ -8,7 +8,7 @@ function House() {
     <div className="container mx-auto">
       <Nav />
       <Gallery />
-      <div className="grid grid-cols-3 gap-48">
+      <div className="grid grid-cols-3 gap-30">
         <div className=" col-span-2">
           <div className=" text-3xl font-bold mt-5">Phuket, Thailand</div>
           <div className=" text-gray-400 mt-4 text-sm">
@@ -43,16 +43,43 @@ function House() {
             spot for beach lovers and those seeking a tranquil getaway.
           </div>
         </div>
-        <div className="border border-gray-300 self-start m-5 p-5 rounded-md">
-          <span className=" text-lg font-bold">$120</span>
-          <span className=" text-gray-500 font-bold text-sm"> /night</span>
-          <div className="flex gap-1 justify-between">
-            <div>
-              <span>3 nights = </span>
-              <span className="font-bold">$360</span>
+
+        {/* booking form */}
+        <div className="border border-gray-200 self-start my-5 ml-5 p-4 rounded-md">
+          <form>
+            <span className=" text-xl font-bold">$120</span>
+            <span className=" text-gray-400 font-bold text-sm"> /night</span>
+            <div className="flex justify-between mt-5 gap-1">
+              <div className="w-full">
+                <div className=" text-xs text-gray-400">Check-in</div>
+                <input
+                  type="date"
+                  className="border border-gray-200 rounded-md p-2 w-full"
+                />
+              </div>
+              <div className="w-full">
+                <div className=" text-xs text-gray-400">Check-out</div>
+                <input
+                  type="date"
+                  className="border border-gray-200 rounded-md p-2 w-full"
+                />
+              </div>
             </div>
-            <div className=" bg-blue-600">4.2</div>
-          </div>
+            <textarea
+              placeholder="Please send a message to the host..."
+              className="border border-gray-200 rounded-md mt-2 w-full p-2"
+              rows="7"
+            ></textarea>
+            <div className="flex justify-between">
+              <div className="flex self-center">
+                <span>3 nights = </span>
+                <span className="font-bold">$360</span>
+              </div>
+              <button className=" bg-rose-400 text-white py-3 px-4 rounded-md">
+                Reserve
+              </button>
+            </div>
+          </form>
         </div>
       </div>
       <Reviews />
