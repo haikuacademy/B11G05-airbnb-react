@@ -1,4 +1,5 @@
 import Nav from './Nav'
+import { Link } from 'react-router-dom'
 
 function HouseEdit() {
   return (
@@ -101,9 +102,11 @@ function HouseEdit() {
             <button className=" bg-rose-400 text-white rounded-md p-3">
               Save Changes
             </button>
-            <button className="border border-gray-200 rounded-md py-3 px-6">
-              Cancel
-            </button>
+            <Link to="/listings" className="hover:text-rose-400">
+              <button className="border border-gray-200 rounded-md py-3 px-6">
+                Cancel
+              </button>
+            </Link>
           </div>
         </div>
       </form>
