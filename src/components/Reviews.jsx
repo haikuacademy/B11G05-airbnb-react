@@ -9,21 +9,26 @@ function Reviews() {
         <div>Leave a Review</div>
         <div className="mt-2">0</div>
       </div>
-      <div className="border border-gray-300 rounded-sm col-span-2 p-5">
-        <div>
-          <div className="flex col-span-2justify-start gap-1">
-            <div className=" bg-blue-600">5.1</div>
-            <div>
-              <div className=" text-gray-400">22 Jan 2024</div>
-              <div>Mike Lino</div>
-            </div>
-          </div>
-          <div className="my-3">5</div>
+      <Review />
+    </div>
+  )
+}
+function Review() {
+  return (
+    <div className="border border-gray-300 rounded-sm col-span-2 p-5">
+      <div>
+        <div className="flex col-span-2justify-start gap-1">
+          <div className=" bg-blue-600">5.1</div>
           <div>
-            Great place to stay! The house is very clean and comfortable, and
-            the location is perfect. The host was very friendly and helpful!
-            Highly recommend!
+            <div className=" text-gray-400">22 Jan 2024</div>
+            <div>Mike Lino</div>
           </div>
+        </div>
+        <div className="my-3">5</div>
+        <div>
+          Great place to stay! The house is very clean and comfortable, and the
+          location is perfect. The host was very friendly and helpful! Highly
+          recommend!
         </div>
       </div>
     </div>
