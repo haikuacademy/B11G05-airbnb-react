@@ -5,7 +5,10 @@ function Reviews() {
         <div className="font-bold text-xl mb-2">34 Reviews</div>
         <div>4.5</div>
       </div>
-      <Review />
+      <div className="border border-gray-300 rounded-sm m-4 p-4">
+        <div>Leave a Review</div>
+        <div className="mt-2">0</div>
+      </div>
       <div className="border border-gray-300 rounded-sm col-span-2 p-5">
         <div>
           <div className="flex col-span-2justify-start gap-1">
@@ -23,14 +26,6 @@ function Reviews() {
           </div>
         </div>
       </div>
-    </div>
-  )
-}
-function Review() {
-  return (
-    <div className="border border-gray-300 rounded-sm m-4 p-4">
-      <div>Leave a Review</div>
-      <div className="mt-2">0</div>
     </div>
   )
 }
