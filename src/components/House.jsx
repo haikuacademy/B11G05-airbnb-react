@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import Gallery from './Gallery'
 import Nav from './Nav'
 import Reviews from './Reviews'
@@ -14,7 +15,13 @@ function House() {
             2 rooms • 2 bathrooms
           </div>
           <div className="flex col-span-2 justify-start gap-1 mt-8">
-            <div className=" bg-blue-600">3.1</div>
+            <div>
+              <img
+                src="https://randomuser.me/api/portraits/women/85.jpg"
+                alt="User profile photo"
+                className="rounded-full h-14 w-14"
+              />
+            </div>
             <div>
               <div className=" text-gray-400 text-sm">Hosted by</div>
               <div>Linda Smith</div>
