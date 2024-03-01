@@ -3,13 +3,16 @@ import { Link } from 'react-router-dom'
 function Nav() {
   return (
     <div className="flex justify-between my-2 items-center">
-      <div className="w-20">
-        <img
-          src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1642399114/portal/web%20development%20beginners/05%20Project%20Airbnb/assets/logo-airbnb.png
+      {/* Logo */}
+      <Link to="/">
+        <div className="w-20">
+          <img
+            src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1642399114/portal/web%20development%20beginners/05%20Project%20Airbnb/assets/logo-airbnb.png
 "
-          alt="airbnb logo"
-        />
-      </div>
+            alt="airbnb logo"
+          />
+        </div>
+      </Link>
       {/* my bookings button */}
       <div className="flex justify-center gap-1">
         <Link to="/bookings">
