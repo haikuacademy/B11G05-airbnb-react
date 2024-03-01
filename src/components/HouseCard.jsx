@@ -1,13 +1,17 @@
+import { Link } from 'react-router-dom'
+
 function HouseCard() {
   return (
     <div className="border border-gray-300 rounded-md pb-5">
       <div className="w-70">
-        <img
-          src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_01.png
+        <Link to="/houses/1" className="text-rose-400 hover:text-rose-400">
+          <img
+            src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_01.png
 "
-          alt="Phuket house"
-          className="w-full rounded-tr-md rounded-tl-md"
-        />
+            alt="Phuket house"
+            className="w-full rounded-tr-md rounded-tl-md"
+          />
+        </Link>
       </div>
       <div className=" pl-5 pr-5">
         <div className=" text-lg font-bold">Phuket, Thailand</div>
