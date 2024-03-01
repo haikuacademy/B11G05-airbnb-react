@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
+
 function Reviews() {
   return (
     <div className="grid grid-cols-3 gap-x-48 border-t-2 py-5">
@@ -5,14 +8,17 @@ function Reviews() {
         <div className="font-bold text-xl mb-2">34 Reviews</div>
         <div>4.5</div>
       </div>
-      <div className="border border-gray-300 rounded-sm m-4 p-4">
+      <div className="border border-gray-200 self-start my-5 p-4 rounded-md">
         <div>Leave a Review</div>
-        <div className="mt-2 text-sm">*stars* 0</div>
+        <div className="mt-2 text-sm">
+          <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} /> 0
+        </div>
         <form>
           <div className=" text-sm justify-center mt-3">
-            <textarea className=" border w-full col-span-6 text-sm text-gray-300 pb-16 pr-16">
-              Please leave a review for this house...
-            </textarea>
+            <textarea
+              className=" border w-full col-span-8 text-sm text-gray-300 pb-16 pr-16"
+              placeholder="Please leave a review for this house..."
+            ></textarea>
           </div>
           <div className=" text-sm text-white mt-1">
             <button className=" border bg-rose-400 p-2 rounded-md">
@@ -42,7 +48,13 @@ function Review() {
             <div>Mike Lino</div>
           </div>
         </div>
-        <div className="my-3">5</div>
+        <div className="my-3">
+          <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} />
+          <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} />
+          <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} />
+          <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} />
+          <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} /> 5
+        </div>
         <div>
           Great place to stay! The house is very clean and comfortable, and the
           location is perfect. The host was very friendly and helpful! Highly
