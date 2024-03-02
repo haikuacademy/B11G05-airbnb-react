@@ -23,10 +23,10 @@ function Houses() {
         {/* loop through the houses array and render to HouseCard */}
         <div className="grid gap-4 grid-cols-5 ">
           {houses.map((house, index) => (
-            <HouseCard house key={index} item={house} />
+            <HouseCard house key={index} house={house} />
           ))}
           {houses.map((house, index) => (
-            <HouseCard house key={index} item={house} />
+            <HouseCard house key={index} house={house} />
           ))}
         </div>
       </div>

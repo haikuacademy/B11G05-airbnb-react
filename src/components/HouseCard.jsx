@@ -7,48 +7,43 @@ function HouseCard(props) {
   return (
     <Link to="/houses/1">
       <div className="border border-gray-300 rounded-md pb-5 hover:shadow">
+        {/* photo */}
         <div className="w-70">
           <img
-            src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_01.png
-            "
-            alt="Phuket house"
+            src={`${props.house.photo}`}
+            alt={`house in ${props.house.location}`}
             className="w-full rounded-tr-md rounded-tl-md"
           />
         </div>
+        {/* location, room, and price */}
         <div className=" pl-5 pr-5">
-          <div className=" text-lg font-bold">{props.item.location}</div>
-          <div className=" text-gray-500">{`${props.item.rooms} rooms • ${props.item.bathrooms} bathrooms`}</div>
-          <div className=" text-xl font-bold">{`$${props.item.price}`}</div>
+          <div className=" text-lg font-bold">{props.house.location}</div>
+          <div className=" text-gray-500">{`${props.house.rooms} rooms • ${props.house.bathrooms} bathrooms`}</div>
+          <div className=" text-xl font-bold">{`$ ${props.house.price}`}</div>
           <div className="flex justify-between mt-3">
-            <span>
-              <FontAwesomeIcon
-                icon={faStar}
-                className="text-xs text-yellow-400 "
-              />
-              <FontAwesomeIcon
-                icon={faStar}
-                className="text-xs text-yellow-400"
-              />
-              <FontAwesomeIcon
-                icon={faStar}
-                className="text-xs text-yellow-400"
-              />
-              <FontAwesomeIcon
-                icon={faStar}
-                className="text-xs text-yellow-400"
-              />
-              <FontAwesomeIcon
-                icon={faStarHalf}
-                className="text-xs text-yellow-400"
-              />
-              4.5
+            {/* ratings and stars */}
+            <span className="flex gap-x-1">
+              <div>
+                {[...new Array(Math.floor(props.house.rating))].map(
+                  (i, index) => (
+                    <FontAwesomeIcon
+                      icon={faStar}
+                      style={{ color: '#FFD43B' }}
+                    />
+                  )
+                )}
+              </div>
+              <div>{props.house.rating}</div>
             </span>
-            <span>
-              34{' '}
-              <FontAwesomeIcon
-                icon={faCommentDots}
-                className="text-xs text-gray-500"
-              />
+            {/* total reviews */}
+            <span className="flex gap-x-1">
+              <div>{props.house.reviews}</div>
+              <div>
+                <FontAwesomeIcon
+                  icon={faCommentDots}
+                  className="text-xs text-gray-500 ml-1"
+                />
+              </div>
             </span>
           </div>
         </div>
@@ -56,4 +51,5 @@ function HouseCard(props) {
     </Link>
   )
 }
+
 export default HouseCard
