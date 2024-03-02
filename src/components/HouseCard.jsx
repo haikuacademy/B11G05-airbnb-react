@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faStarHalf } from '@fortawesome/free-solid-svg-icons'
 import { faCommentDots } from '@fortawesome/free-regular-svg-icons'
-function HouseCard() {
+
+function HouseCard(props) {
   return (
     <Link to="/houses/1">
       <div className="border border-gray-300 rounded-md pb-5 hover:shadow">
@@ -15,9 +16,9 @@ function HouseCard() {
           />
         </div>
         <div className=" pl-5 pr-5">
-          <div className=" text-lg font-bold">Phuket, Thailand</div>
-          <div className=" text-gray-500">2 rooms • 2 bathrooms</div>
-          <div className=" text-xl font-bold">$120</div>
+          <div className=" text-lg font-bold">{props.item.location}</div>
+          <div className=" text-gray-500">{`${props.item.rooms} rooms • ${props.item.bathrooms} bathrooms`}</div>
+          <div className=" text-xl font-bold">{`$${props.item.price}`}</div>
           <div className="flex justify-between mt-3">
             <span>
               <FontAwesomeIcon
