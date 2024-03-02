@@ -1,5 +1,20 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
+const reviews = [
+  {
+    content:
+      'Great place to stay! The house is very clean and comfortable, and the location is perfect. The host was very friendly and helpful! Highly recommend!'
+  },
+  { rating: 5 },
+  { date: '22 Jan 2024' },
+  {
+    author: {
+      firstName: 'Mike',
+      lastName: 'Lino',
+      picture: 'https://randomuser.me/api/portraits/men/84.jpg'
+    }
+  }
+]
 
 function Reviews() {
   return (
@@ -47,16 +62,22 @@ function Review() {
             />
           </div>
           <div>
-            <div className=" text-gray-400">22 Jan 2024</div>
-            <div>Mike Lino</div>
+            <div className=" text-gray-400">review date</div>
+            <div className="flex gap-2">
+              <div>Mike</div>
+              <div>Lino</div>
+            </div>
           </div>
         </div>
-        <div className="my-3">
-          <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} />
-          <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} />
-          <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} />
-          <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} />
-          <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} /> 5
+        <div className=" flex my-3">
+          <div>
+            <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} />
+            <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} />
+            <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} />
+            <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} />
+            <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} />
+          </div>
+          <div className="ml-2">5</div>
         </div>
         <div>
           Great place to stay! The house is very clean and comfortable, and the
