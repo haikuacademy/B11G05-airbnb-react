@@ -4,9 +4,13 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 function Reviews() {
   return (
     <div className="grid grid-cols-3 gap-x-48 border-t-2 py-5">
-      <div className="col-span-2 my-5">
-        <div className="font-bold text-xl mb-2">34 Reviews</div>
-        <div>4.5</div>
+      <div className="col-span-2 mt-5">
+        <div className="mb-6">
+          <div className="font-bold text-xl mb-2">34 Reviews</div>
+          <div>4.5</div>
+        </div>
+        <Review />
+        <Review />
       </div>
       <div className="border border-gray-200 self-start my-5 p-4 rounded-md">
         <div>Leave a Review</div>
@@ -27,13 +31,12 @@ function Reviews() {
           </div>
         </form>
       </div>
-      <Review />
     </div>
   )
 }
 function Review() {
   return (
-    <div className="border border-gray-300 rounded-sm col-span-2 p-5">
+    <div className="border border-gray-300 rounded-md col-span-2 p-5 my-4">
       <div>
         <div className="flex col-span-2justify-start gap-1">
           <div className=" rounded-full w-10 h-10 mr-3">
