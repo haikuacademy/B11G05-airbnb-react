@@ -4,11 +4,9 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 const reviews = [
   {
     content:
-      'Great place to stay! The house is very clean and comfortable, and the location is perfect. The host was very friendly and helpful! Highly recommend!'
-  },
-  { rating: 5 },
-  { date: '22 Jan 2024' },
-  {
+      'Great place to stay! The house is very clean and comfortable, and the location is perfect. The host was very friendly and helpful! Highly recommend!',
+    rating: 5,
+    date: '22 Jan 2024',
     author: {
       firstName: 'Mike',
       lastName: 'Lino',
@@ -25,6 +23,7 @@ function Reviews() {
           <div className="font-bold text-xl mb-2">34 Reviews</div>
           <div>4.5</div>
         </div>
+        <Review />
         <Review />
         <Review />
       </div>
@@ -55,10 +54,11 @@ function Review() {
     <div className="border border-gray-300 rounded-md col-span-2 p-5 my-4">
       <div>
         <div className="flex col-span-2justify-start gap-1">
+          {/* user picture */}
           <div className=" rounded-full w-10 h-10 mr-3">
             <img
-              src="https://randomuser.me/api/portraits/men/84.jpg"
-              alt="user profile of Mike Lino"
+              src={reviews[0].author.picture}
+              alt={`user profile of ${reviews[0].author.firstName}`}
               className="rounded-full"
             />
           </div>
@@ -69,23 +69,25 @@ function Review() {
               ))}
             </div>
             <div className="flex gap-2">
+              {/* first name */}
               <div>
                 {reviews.map((review) => (
-                  <div>{review.firstName}</div>
+                  <div>{review.author.firstName}</div>
                 ))}
               </div>
+              {/* last name */}
               <div>
                 {reviews.map((review) => (
-                  <div>{review.lastName}</div>
+                  <div>{review.author.lastName}</div>
                 ))}
               </div>
             </div>
           </div>
         </div>
         <div className=" flex my-3">
-          {/* adding stars icon to the rating */}
+          {/* stars icon to the rating */}
           <div>
-            {[...new Array(5)].map((i, index) => (
+            {[...new Array(reviews[0].rating)].map((i, index) => (
               <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} />
             ))}
           </div>
