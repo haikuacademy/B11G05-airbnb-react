@@ -11,12 +11,7 @@ function Profile() {
 
   return (
     <div className="container mx-auto">
-      <Nav
-        firstName={user.firstName}
-        lastName={user.lastName}
-        email={user.email}
-        profile_picture={user.profile_picture}
-      />
+      <Nav />
       <div className="border border-gray-300 p-5 rounded-md">
         <form>
           <div className="text-lg font-bold ">Your Profile</div>
@@ -30,7 +25,7 @@ function Profile() {
             <div className="flex justify-center w-full self-center">
               <input
                 type="text"
-                placeholder={`${user.profile_picture}`}
+                placeholder={user.profile_picture}
                 className="border border-gray-200 w-full p-2 rounded-md"
               />
             </div>
@@ -39,21 +34,21 @@ function Profile() {
           <div className="text-gray-400 pt-4">First Name</div>
           <input
             type="text"
-            placeholder={`${user.firstName}`}
+            placeholder={user.firstName}
             className="border border-gray-200 w-full p-2 rounded-md placeholder-black "
           />
           {/* Last name */}
           <div className="text-gray-400 pt-2">Last Name</div>
           <input
             type="text"
-            placeholder={`${user.lastName}`}
+            placeholder={user.lastName}
             className="border border-gray-200 w-full p-2 rounded-md placeholder-black"
           />
           {/* Email */}
           <div className="text-gray-400 pt-2">Email</div>
           <input
             type="Email"
-            placeholder={`${user.email}`}
+            placeholder={user.email}
             className="border border-gray-200 w-full p-2 rounded-md placeholder-black"
           />
           {/* Buttons */}
