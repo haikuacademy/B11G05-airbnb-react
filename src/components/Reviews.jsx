@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
+
 const reviews = [
   {
     content:
@@ -62,27 +63,42 @@ function Review() {
             />
           </div>
           <div>
-            <div className=" text-gray-400">review date</div>
+            <div className=" text-gray-400">
+              {reviews.map((review) => (
+                <div>{review.date}</div>
+              ))}
+            </div>
             <div className="flex gap-2">
-              <div>Mike</div>
-              <div>Lino</div>
+              <div>
+                {reviews.map((review) => (
+                  <div>{review.firstName}</div>
+                ))}
+              </div>
+              <div>
+                {reviews.map((review) => (
+                  <div>{review.lastName}</div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
         <div className=" flex my-3">
+          {/* adding stars icon to the rating */}
           <div>
-            <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} />
-            <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} />
-            <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} />
-            <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} />
-            <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} />
+            {[...new Array(5)].map((i, index) => (
+              <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} />
+            ))}
           </div>
-          <div className="ml-2">5</div>
+          <div className="ml-2">
+            {reviews.map((review) => (
+              <div>{review.rating}</div>
+            ))}
+          </div>
         </div>
         <div>
-          Great place to stay! The house is very clean and comfortable, and the
-          location is perfect. The host was very friendly and helpful! Highly
-          recommend!
+          {reviews.map((review) => (
+            <div>{review.content}</div>
+          ))}
         </div>
       </div>
     </div>
