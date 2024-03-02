@@ -2,7 +2,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCommentDots } from '@fortawesome/free-regular-svg-icons'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
-function Reviews() {
+function Reviews(props) {
+  console.log(props)
   const reviews = [
     {
       content:
@@ -25,16 +26,22 @@ function Reviews() {
               icon={faCommentDots}
               className="text-md text-gray-500 mr-2"
             />
-            {/* need to replace with data */}
-            {`34 Reviews`}
+            {/* retrieve data from houses*/}
+            {`${props.house.reviews} Reviews`}
           </div>
           <div className="flex gap-2">
             <div>
-              {[...new Array(4)].map((i, index) => (
-                <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} />
-              ))}
+              {[...new Array(Math.floor(props.house.rating))].map(
+                (i, index) => (
+                  <FontAwesomeIcon
+                    key={index}
+                    icon={faStar}
+                    style={{ color: '#FFD43B' }}
+                  />
+                )
+              )}
             </div>
-            <div>4.5</div>
+            <div>{props.house.rating}</div>
           </div>
         </div>
         {reviews.map((review, index) => (
@@ -91,7 +98,11 @@ function Review(props) {
           {/* stars icon to the rating */}
           <div>
             {[...new Array(props.review.rating)].map((i, index) => (
-              <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} />
+              <FontAwesomeIcon
+                key={index}
+                icon={faStar}
+                style={{ color: '#FFD43B' }}
+              />
             ))}
           </div>
           <div className="ml-2">{props.review.rating}</div>
