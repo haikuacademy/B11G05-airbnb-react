@@ -3,7 +3,7 @@ import { faCommentDots } from '@fortawesome/free-regular-svg-icons'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 function Reviews(props) {
-  console.log(props)
+  console.log(props.house)
   const reviews = [
     {
       content:
@@ -27,7 +27,7 @@ function Reviews(props) {
               className="text-md text-gray-500 mr-2"
             />
             {/* retrieve data from houses*/}
-            {`${props.house.reviews} Reviews`}
+            {/* {`${props.houseData.reviews} Reviews`} */}
           </div>
           <div className="flex gap-2">
             <div>

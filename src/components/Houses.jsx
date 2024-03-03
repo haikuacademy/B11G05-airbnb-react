@@ -16,6 +16,11 @@ function Houses() {
         'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_01.png'
     }
   ]
+
+  //* Use map to render houseData to Reviews  */
+  houses.map((houseInfo, index) => (
+    <Reviews key={index} houseInfo={houseInfo} />
+  ))
   return (
     <>
       <div className=" container mx-auto">
@@ -30,10 +35,6 @@ function Houses() {
             <HouseCard key={index} house={house} />
           ))}
         </div>
-        {/* Use map to render Reviews component for each house */}
-        {houses.map((house, index) => (
-          <Reviews key={index} house={house} />
-        ))}
       </div>
     </>
   )
