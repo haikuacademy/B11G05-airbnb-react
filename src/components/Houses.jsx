@@ -26,8 +26,6 @@ function Houses() {
         {/* loop through the houses array and render to HouseCard */}
         <div className="grid gap-4 grid-cols-5 mb-5">
           {listOfHouseCards}
-          {listOfHouseCards}
-          {listOfHouseCards}
         </div>
       </div>
     </>
