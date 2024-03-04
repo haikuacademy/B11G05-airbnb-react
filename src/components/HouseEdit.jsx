@@ -2,6 +2,42 @@ import Nav from './Nav'
 import { Link } from 'react-router-dom'
 
 function HouseEdit() {
+  const house = {
+    location: 'Phuket, Thailand',
+    rooms: 2,
+    bathrooms: 2,
+    description: `Nestled on a serene beachfront, this charming Airbnb house offers a
+            picturesque escape. The exterior boasts a classic beach house
+            aesthetic with weathered wood siding and a spacious wraparound deck,
+            perfect for savoring the ocean breeze. Inside, you're greeted by an
+            open-concept living area bathed in natural light, complemented by
+            cozy furnishings and nautical accents. The house features three
+            comfortable bedrooms, each with a unique coastal theme, and two
+            modern bathrooms. The fully equipped kitchen opens to a dining area
+            that's ideal for intimate meals or entertaining guests. Large glass
+            doors in the living room lead to the deck, where you can enjoy
+            stunning sunset views over the ocean. This idyllic retreat is a
+            stone's throw away from the soft sandy beach, making it the perfect
+            spot for beach lovers and those seeking a tranquil getaway.`,
+    price: 120,
+    rating: 4.5,
+    host: {
+      firstName: 'Linda',
+      lastName: 'Smith',
+      picture: 'https://randomuser.me/api/portraits/women/85.jpg'
+    },
+    images: [
+      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_01.png',
+      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_02.png',
+      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_03.png',
+      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_04.png',
+      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_05.png',
+      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_06.png',
+      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_07.png',
+      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_08.png',
+      'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_09.png'
+    ]
+  }
   return (
     <div className="container mx-auto">
       <Nav />
@@ -14,25 +50,25 @@ function HouseEdit() {
               <div className=" text-gray-400 mt-2 text-sm">Location</div>
               <input
                 type="text"
-                placeholder="Bali"
+                placeholder={house.location}
                 className="border border-gray-200 rounded-md p-2 w-full placeholder-black"
               />
               <div className=" text-gray-400 mt-2 text-sm">Bedrooms</div>
               <input
                 type="number"
-                placeholder="3"
+                placeholder={house.rooms}
                 className="border border-gray-200 rounded-md p-2 w-full placeholder-black"
               />
               <div className=" text-gray-400 mt-2 text-sm">Bathrooms</div>
               <input
                 type="number"
-                placeholder="2"
+                placeholder={house.bathrooms}
                 className="border border-gray-200 rounded-md p-2 w-full placeholder-black"
               />
               <div className=" text-gray-400 mt-2 text-sm">Price per Night</div>
               <input
                 type="number"
-                placeholder="140"
+                placeholder={house.price}
                 className="border border-gray-200 rounded-md p-2 w-full placeholder-black"
               />
               <div className=" text-gray-400 mt-2 text-sm">Description</div>
@@ -40,11 +76,7 @@ function HouseEdit() {
                 className="border border-gray-200 rounded-md p-2 w-full text-sm"
                 rows="4"
               >
-                This enchanting Airbnb villa in Bali offers an exquisite blend
-                of traditional Balinese architecture and modern luxury. Tucked
-                away in lush tropical greenery, the villa features a stunning
-                open-air living space that allows the gentle Balinese breeze to
-                flow through, creating a tranquil and refreshing ambiance.
+                {house.description}
               </textarea>
             </div>
             {/* col 2 */}
@@ -52,47 +84,47 @@ function HouseEdit() {
               <div className=" text-gray-400 mt-2 text-sm">Photos</div>
               <input
                 type="text"
-                placeholder="https://www.haikuacademy.com/photos/01.png"
+                placeholder={house.images[0]}
                 className="border border-gray-200 rounded-md p-2 w-full placeholder-black"
               />
               <input
                 type="text"
-                placeholder="https://www.haikuacademy.com/photos/02.png"
+                placeholder={house.images[1]}
                 className="border border-gray-200 rounded-md p-2 w-full mt-2 placeholder-black"
               />
               <input
                 type="text"
-                placeholder="https://www.haikuacademy.com/photos/03.png"
+                placeholder={house.images[2]}
                 className="border border-gray-200 rounded-md p-2 w-full mt-2 placeholder-black"
               />
               <input
                 type="text"
-                placeholder="https://www.haikuacademy.com/photos/04.png"
+                placeholder={house.images[3]}
                 className="border border-gray-200 rounded-md p-2 w-full mt-2 placeholder-black"
               />
               <input
                 type="text"
-                placeholder="https://www.haikuacademy.com/photos/05.png"
+                placeholder={house.images[4]}
                 className="border border-gray-200 rounded-md p-2 w-full mt-2 placeholder-black"
               />
               <input
                 type="text"
-                placeholder="https://www.haikuacademy.com/photos/06.png"
+                placeholder={house.images[5]}
                 className="border border-gray-200 rounded-md p-2 w-full mt-2 placeholder-black"
               />
               <input
                 type="text"
-                placeholder="https://www.haikuacademy.com/photos/07.png"
+                placeholder={house.images[6]}
                 className="border border-gray-200 rounded-md p-2 w-full mt-2 placeholder-black"
               />
               <input
                 type="text"
-                placeholder="https://www.haikuacademy.com/photos/08.png"
+                placeholder={house.images[7]}
                 className="border border-gray-200 rounded-md p-2 w-full mt-2 placeholder-black"
               />
               <input
                 type="text"
-                placeholder="https://www.haikuacademy.com/photos/09.png"
+                placeholder={house.images[8]}
                 className="border border-gray-200 rounded-md p-2 w-full mt-2 placeholder-black"
               />
             </div>
