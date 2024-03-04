@@ -13,10 +13,20 @@ function Houses() {
       reviews: 34,
       photo:
         'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_01.png'
+    },
+    {
+      location: 'Koh Phangan, Thailand',
+      rooms: 1,
+      bathrooms: 1,
+      price: 100,
+      rating: 4.5,
+      reviews: 17,
+      photo:
+        'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_03.png'
     }
   ]
   const listOfHouseCards = houses.map((house, index) => (
-    <HouseCard key={index} house={house} emiliano={true} />
+    <HouseCard key={index} house={house} />
   ))
   return (
     <>
