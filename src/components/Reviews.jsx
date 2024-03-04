@@ -3,8 +3,7 @@ import { faCommentDots } from '@fortawesome/free-regular-svg-icons'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 function Reviews(props) {
-  console.log(props.house)
-  const reviews = [
+  let reviews = [
     {
       content:
         'Great place to stay! The house is very clean and comfortable, and the location is perfect. The host was very friendly and helpful! Highly recommend!',
@@ -17,6 +16,10 @@ function Reviews(props) {
       }
     }
   ]
+  const reviewData = reviews.map((review, index) => (
+    <Review key={index} review={review} />
+  ))
+
   return (
     <div className="grid grid-cols-3 gap-x-48 border-t-2 py-5">
       <div className="col-span-2 mt-5">
@@ -26,8 +29,7 @@ function Reviews(props) {
               icon={faCommentDots}
               className="text-md text-gray-500 mr-2"
             />
-            {/* retrieve data from houses*/}
-            {/* {`${props.houseData.reviews} Reviews`} */}
+            32 Reviews
           </div>
           <div className="flex gap-2">
             <div>
@@ -44,9 +46,7 @@ function Reviews(props) {
             <div>{props.house.rating}</div>
           </div>
         </div>
-        {reviews.map((review, index) => (
-          <Review key={index} review={review} />
-        ))}
+        {reviewData}
       </div>
       <div className="border border-gray-200 self-start my-5 p-4 rounded-md">
         <div>Leave a Review</div>
@@ -71,7 +71,6 @@ function Reviews(props) {
   )
 }
 function Review(props) {
-  console.log(props)
   return (
     <div className="border border-gray-300 rounded-md col-span-2 p-5 my-4">
       <div>

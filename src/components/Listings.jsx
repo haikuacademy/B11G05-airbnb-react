@@ -88,8 +88,8 @@ function Listings() {
         </div>
       </form>
       <div className="grid gap-4 grid-cols-5 mt-4 mb-20">
-        <HouseCard />
-        <HouseCard />
+        {/* <HouseCard house={} isListing={true} />
+        <HouseCard /> */}
       </div>
     </div>
   )
