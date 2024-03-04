@@ -114,7 +114,7 @@ function House() {
           </form>
         </div>
       </div>
-      <Reviews />
+      <Reviews house={house} />
     </div>
   )
 }
