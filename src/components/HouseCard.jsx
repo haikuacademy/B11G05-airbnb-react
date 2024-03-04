@@ -55,7 +55,7 @@ function HouseCard(props) {
         </div>
         {/* for buttons in Listing Card */}
         {isListing && (
-          <div className="flex justify-start px-2 gap-2 mt-3 ml-2">
+          <div className="flex justify-start px-2 gap-1 mt-3 ml-2">
             <button className=" border border-gray-200 px-2 rounded-md">
               View
             </button>
