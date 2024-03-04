@@ -53,7 +53,13 @@ function HouseCard(props) {
             </span>
           </div>
         </div>
-        {booking && <div>booking info: {booking.price}</div>}
+        {/* for buttons in Listing Card */}
+        {isListing && (
+          <div>
+            <button>edit</button>
+            <button>view</button>
+          </div>
+        )}
       </div>
     </Link>
   )

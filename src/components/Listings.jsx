@@ -2,6 +2,31 @@ import Nav from './Nav'
 import HouseCard from './HouseCard'
 
 function Listings() {
+  let listings = [
+    {
+      location: 'Phuket, Thailand',
+      rooms: 2,
+      bathrooms: 2,
+      price: 120,
+      rating: 4.5,
+      reviews: 34,
+      photo:
+        'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_02.png'
+    },
+    {
+      location: 'Bali, Indonesia',
+      rooms: 3,
+      bathrooms: 2,
+      price: 190,
+      rating: 5,
+      reviews: 12,
+      photo:
+        'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_08.png'
+    }
+  ]
+  const listOfListings = listings.map((house, index) => (
+    <HouseCard key={index} house={house} isListing={true} />
+  ))
   return (
     <div className="container mx-auto">
       <Nav />
@@ -87,10 +112,7 @@ function Listings() {
           </div>
         </div>
       </form>
-      <div className="grid gap-4 grid-cols-5 mt-4 mb-20">
-        {/* <HouseCard house={} isListing={true} />
-        <HouseCard /> */}
-      </div>
+      <div className="grid gap-4 grid-cols-5 mt-4 mb-20">{listOfListings}</div>
     </div>
   )
 }
