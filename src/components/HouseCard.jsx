@@ -59,9 +59,11 @@ function HouseCard(props) {
             <button className=" border border-gray-200 px-2 rounded-md">
               View
             </button>
-            <button className=" border border-gray-200 px-2 rounded-md">
-              Edit
-            </button>
+            <Link to="/houses/:id/edit">
+              <button className=" border border-gray-200 px-2 rounded-md">
+                Edit
+              </button>
+            </Link>
           </div>
         )}
       </div>
