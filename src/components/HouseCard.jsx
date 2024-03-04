@@ -4,6 +4,11 @@ import { faStar, faStarHalf } from '@fortawesome/free-solid-svg-icons'
 import { faCommentDots } from '@fortawesome/free-regular-svg-icons'
 
 function HouseCard(props) {
+  const house = props.house
+  const booking = props.booking
+  const isListing = props.isListing
+
+  console.log(props)
   return (
     <Link to="/houses/1">
       <div className="border border-gray-300 rounded-md pb-5 hover:shadow">
@@ -48,6 +53,7 @@ function HouseCard(props) {
             </span>
           </div>
         </div>
+        {booking && <div>booking info: {booking.price}</div>}
       </div>
     </Link>
   )

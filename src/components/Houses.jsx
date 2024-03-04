@@ -9,14 +9,14 @@ function Houses() {
       rooms: 2,
       bathrooms: 2,
       price: 120,
-      rating: 4.5,
+      rating: 3.5,
       reviews: 34,
       photo:
         'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_01.png'
     }
   ]
   const listOfHouseCards = houses.map((house, index) => (
-    <HouseCard key={index} house={house} />
+    <HouseCard key={index} house={house} emiliano={true} />
   ))
   return (
     <>
@@ -24,9 +24,7 @@ function Houses() {
         <Nav />
         <Filter />
         {/* loop through the houses array and render to HouseCard */}
-        <div className="grid gap-4 grid-cols-5 mb-5">
-          {listOfHouseCards}
-        </div>
+        <div className="grid gap-4 grid-cols-5 mb-5">{listOfHouseCards}</div>
       </div>
     </>
   )
