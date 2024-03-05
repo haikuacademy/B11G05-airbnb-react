@@ -48,6 +48,10 @@ function House() {
     ]
   }
   // useEffect to calculate nights from checkin and checkout date
+  //create a new Date object based on the provided startDate and endDate
+  //getTime() method is a function of the Date object that returns the value number of milliseconds.
+  //1000 milliseconds in a second (1000). 60 seconds in a minute and 60 minutes in an hour (3600).24 hours in a day (24).
+  // If nights is falsy, the value assigned will be 0.
   useEffect(() => {
     if (startDate && endDate) {
       const start = new Date(startDate)
