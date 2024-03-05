@@ -33,7 +33,7 @@ function Bookings() {
     }
   ]
   const listOfBookings = bookings.map((booking, index) => (
-    <HouseCard key={index} house={booking} booking={true} />
+    <HouseCard key={index} house={booking} isBooking={true} />
   ))
   return (
     <div className="container mx-auto">

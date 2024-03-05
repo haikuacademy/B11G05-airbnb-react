@@ -6,6 +6,7 @@ import { faCommentDots } from '@fortawesome/free-regular-svg-icons'
 function HouseCard(props) {
   const house = props.house
   const booking = props.house
+  const isBooking = props.isBooking
   const isListing = props.isListing
 
   console.log(props)
@@ -53,7 +54,7 @@ function HouseCard(props) {
             </span>
           </div>
         </div>
-        {booking && (
+        {isBooking && (
           <div className="bg-green-50 p-2 mt-2 flex flex-col items-center">
             <p className="text-black">
               {booking.startDate} - {booking.endDate}
