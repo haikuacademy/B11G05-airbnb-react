@@ -2,8 +2,15 @@
 import Gallery from './Gallery'
 import Nav from './Nav'
 import Reviews from './Reviews'
+import { useState, useEffect } from 'react'
 
 function House() {
+  //creating variables for getting booking date
+  const [startDate, setStartDate] = useState('')
+  const [endDate, setEndDate] = useState('')
+  const [nights, setNights] = useState(0)
+  const [totalPrice, setTotalPrice] = useState(0)
+
   const house = {
     location: 'Phuket, Thailand',
     rooms: 2,
@@ -40,7 +47,31 @@ function House() {
       'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_09.png'
     ]
   }
+  // useEffect to calculate nights from checkin and checkout date
+  useEffect(() => {
+    if (startDate && endDate) {
+      const start = new Date(startDate)
+      const end = new Date(endDate)
+      const calculateTime = end.getTime() - start.getTime()
+      const nights = Math.ceil(calculateTime / (1000 * 3600 * 24))
+      setNights(nights || 0)
+    }
+  }, [startDate, endDate])
 
+  // useEffect to update totalPrice
+  useEffect(() => {
+    setTotalPrice(nights * house.price)
+  }, [nights, house.price])
+
+  // Function to get check-in date from the form
+  const handleCheckInChange = (e) => {
+    setStartDate(e.target.value)
+  }
+
+  // Function to get check-out date from the form
+  const getCheckOutDate = (e) => {
+    setEndDate(e.target.value)
+  }
   return (
     <div className="container mx-auto">
       <Nav />
@@ -82,18 +113,24 @@ function House() {
             </span>
             <span className=" text-gray-400 font-bold text-sm"> /night</span>
             <div className="flex justify-between mt-5 gap-1">
+              {/* checkin date */}
               <div className="w-full">
                 <div className=" text-xs text-gray-400">Check-in</div>
                 <input
                   type="date"
                   className="border border-gray-200 rounded-md p-2 w-full"
+                  value={startDate}
+                  onChange={handleCheckInChange}
                 />
               </div>
+              {/* checkout date */}
               <div className="w-full">
                 <div className=" text-xs text-gray-400">Check-out</div>
                 <input
                   type="date"
                   className="border border-gray-200 rounded-md p-2 w-full"
+                  value={endDate}
+                  onChange={getCheckOutDate}
                 />
               </div>
             </div>
@@ -103,8 +140,9 @@ function House() {
               rows="7"
             ></textarea>
             <div className="flex justify-between">
+              {/* total nights */}
               <div className="flex self-center">
-                <span>3 nights = </span>
+                <span>{nights} nights = </span>
                 <span className="font-bold">$360</span>
               </div>
               <button className=" bg-rose-400 text-white py-3 px-4 rounded-md">
