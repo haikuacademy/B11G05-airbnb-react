@@ -64,7 +64,7 @@ function House() {
   }, [nights, house.price])
 
   // Function to get check-in date from the form
-  const handleCheckInChange = (e) => {
+  const getCheckInDate = (e) => {
     setStartDate(e.target.value)
   }
 
@@ -120,7 +120,7 @@ function House() {
                   type="date"
                   className="border border-gray-200 rounded-md p-2 w-full"
                   value={startDate}
-                  onChange={handleCheckInChange}
+                  onChange={getCheckInDate}
                 />
               </div>
               {/* checkout date */}
