@@ -66,14 +66,21 @@ function HouseCard(props) {
         )}
         {/* for buttons in Listing Card */}
         {isListing && (
-          <div>
-            <button>edit</button>
-            <button>view</button>
+          <div className="flex justify-start px-2 gap-1 mt-3 ml-1">
+            <Link to="/houses/:id">
+              <button className=" border border-gray-200 px-2 rounded-md">
+                View
+              </button>
+            </Link>
+            <Link to="/houses/:id/edit">
+              <button className=" border border-gray-200 px-2 rounded-md">
+                Edit
+              </button>
+            </Link>
           </div>
         )}
       </div>
     </Link>
   )
 }
-
 export default HouseCard
