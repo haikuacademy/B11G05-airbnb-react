@@ -9,7 +9,6 @@ function House() {
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
   const [nights, setNights] = useState(0)
-  // eslint-disable-next-line
   const [totalPrice, setTotalPrice] = useState(0)
 
   const house = {
@@ -148,7 +147,7 @@ function House() {
               {/* total nights */}
               <div className="flex self-center">
                 <span>{nights} nights = </span>
-                <span className="font-bold">$360</span>
+                <span className="font-bold">{`$ ${totalPrice}`}</span>
               </div>
               <button className=" bg-rose-400 text-white py-3 px-4 rounded-md">
                 Reserve
