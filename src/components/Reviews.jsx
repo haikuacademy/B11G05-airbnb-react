@@ -49,7 +49,7 @@ function Reviews(props) {
               icon={faCommentDots}
               className="text-md text-gray-500 mr-2"
             />
-            32 Reviews
+            {reviews.length} Reviews
           </div>
           <div className="flex gap-2">
             <div>
