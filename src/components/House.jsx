@@ -9,6 +9,7 @@ function House() {
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
   const [nights, setNights] = useState(0)
+  // eslint-disable-next-line
   const [totalPrice, setTotalPrice] = useState(0)
 
   const house = {
