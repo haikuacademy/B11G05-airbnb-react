@@ -3,6 +3,7 @@ import Gallery from './Gallery'
 import Nav from './Nav'
 import Reviews from './Reviews'
 import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 function House() {
   //creating variables for getting booking date
