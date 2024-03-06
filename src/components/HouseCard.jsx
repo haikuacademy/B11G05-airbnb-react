@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar, faStarHalf } from '@fortawesome/free-solid-svg-icons'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { faCommentDots } from '@fortawesome/free-regular-svg-icons'
 
 function HouseCard(props) {
-  const house = props.house
   const booking = props.house
   const isBooking = props.isBooking
   const isListing = props.isListing
@@ -60,7 +59,7 @@ function HouseCard(props) {
               {booking.startDate} - {booking.endDate}
             </p>
             <p className="text-black font-bold">
-              {booking.totalNights} nights = ${booking.totalPrice}
+              {booking.totalNights} nights = {booking.totalPrice}
             </p>
           </div>
         )}
