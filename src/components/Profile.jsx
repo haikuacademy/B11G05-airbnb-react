@@ -1,4 +1,5 @@
 import Nav from './Nav'
+import { useState } from 'react'
 
 function Profile() {
   // Data
@@ -8,6 +9,8 @@ function Profile() {
     email: 'jdelacruz@gmail.com',
     profile_picture: 'https://randomuser.me/api/portraits/men/81.jpg'
   }
+  //Hook
+  const [picture, setPicture] = useState(user.profile_picture)
 
   return (
     <div className="container mx-auto">
@@ -18,7 +21,7 @@ function Profile() {
           {/* Create Profile photo & Photo route */}
           <div className="flex gap-2 mt-4">
             <img
-              src="https://randomuser.me/api/portraits/men/81.jpg"
+              src={picture}
               alt="John Lopez"
               className="border rounded-full  w-16"
             />
@@ -27,6 +30,9 @@ function Profile() {
                 type="text"
                 placeholder={user.profile_picture}
                 className="border border-gray-200 w-full p-2 rounded-md"
+                onChange={(event) => {
+                  setPicture(event.target.value)
+                }}
               />
             </div>
           </div>
