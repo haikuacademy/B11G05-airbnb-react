@@ -59,7 +59,7 @@ function HouseCard(props) {
               {booking.startDate} - {booking.endDate}
             </p>
             <p className="text-black font-bold">
-              {booking.totalNights} nights = ${booking.totalPrice}
+              {booking.totalNights} nights = {booking.totalPrice}
             </p>
           </div>
         )}
