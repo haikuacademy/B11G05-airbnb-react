@@ -10,7 +10,7 @@ function HouseCard(props) {
 
   console.log(props)
   return (
-    <Link to="/houses/1">
+    <Link to="/houses/:id">
       <div className="border border-gray-300 rounded-md pb-5 hover:shadow">
         {/* photo */}
         <div className="w-70">
