@@ -3,12 +3,17 @@ import { faCommentDots } from '@fortawesome/free-regular-svg-icons'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { useParams } from 'react-router-dom'
 
 function Reviews(props) {
+  //params
+  const params = useParams()
+  console.log('params', params)
+
   const [reviews, setReviews] = useState([])
   const getReviews = async () => {
     let { data } = await axios.get(
-      `https://haiku-bnb.onrender.com/reviews?house_id=1`
+      `https://haiku-bnb.onrender.com/reviews?house_id=${params.id}`
     )
     setReviews(data)
   }
@@ -106,7 +111,7 @@ function Review(props) {
           </div>
           <div className="ml-2">{props.review.rating}</div>
         </div>
-        <div>{props.review.content}</div>
+        <div>{props.review.comment}</div>
       </div>
     </div>
   )
