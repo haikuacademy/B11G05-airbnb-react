@@ -10,7 +10,7 @@ function Reviews(props) {
   const getReviews = async () => {
     try {
       let { data } = await axios.get(
-        'https://haiku-bnb.onrender.com/reviews?house=1'
+        'https://haiku-bnb.onrender.com/reviews?house_id=1'
       )
       console.log(data[0])
       setReviews(data)
