@@ -7,10 +7,9 @@ function HouseCard(props) {
   const booking = props.house
   const isBooking = props.isBooking
   const isListing = props.isListing
-
   console.log(props)
   return (
-    <Link to="/houses/1">
+    <Link to={`/houses/${props.house.house_id}`}>
       <div className="border border-gray-300 rounded-md pb-5 hover:shadow">
         {/* photo */}
         <div className="w-70">
@@ -82,4 +81,5 @@ function HouseCard(props) {
     </Link>
   )
 }
+
 export default HouseCard
