@@ -10,7 +10,7 @@ function Profile() {
     profile_picture: 'https://randomuser.me/api/portraits/men/81.jpg'
   }
   // Create Hook for useState
-  const [picture, setPicture] = useState(0)
+  const [picture, setPicture] = useState(user.profile_picture)
 
   return (
     <div className="container mx-auto">
