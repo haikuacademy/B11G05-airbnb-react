@@ -1,21 +1,41 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCommentDots } from '@fortawesome/free-regular-svg-icons'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
+import axios from 'axios'
+import { useState, useEffect } from 'react'
 
 function Reviews(props) {
-  let reviews = [
-    {
-      content:
-        'Great place to stay! The house is very clean and comfortable, and the location is perfect. The host was very friendly and helpful! Highly recommend!',
-      rating: 5,
-      date: '22 Jan 2024',
-      author: {
-        firstName: 'Mike',
-        lastName: 'Lino',
-        picture: 'https://randomuser.me/api/portraits/men/84.jpg'
-      }
+  const [reviews, setReviews] = useState([])
+
+  const getReviews = async () => {
+    try {
+      let { data } = await axios.get(
+        'https://haiku-bnb.onrender.com/reviews?house_id=1'
+      )
+      console.log(data[0])
+      setReviews(data)
+    } catch (error) {
+      console.log(error)
     }
-  ]
+  }
+
+  useEffect(() => {
+    getReviews()
+  }, [])
+
+  // let reviews = [
+  //   {
+  //     content:
+  //       'Great place to stay! The house is very clean and comfortable, and the location is perfect. The host was very friendly and helpful! Highly recommend!',
+  //     rating: 5,
+  //     date: '22 Jan 2024',
+  //     author: {
+  //       firstName: 'Mike',
+  //       lastName: 'Lino',
+  //       picture: 'https://randomuser.me/api/portraits/men/84.jpg'
+  //     }
+  //   }
+  // ]
   const reviewData = reviews.map((review, index) => (
     <Review key={index} review={review} />
   ))
@@ -29,7 +49,7 @@ function Reviews(props) {
               icon={faCommentDots}
               className="text-md text-gray-500 mr-2"
             />
-            32 Reviews
+            {reviews.length} Reviews
           </div>
           <div className="flex gap-2">
             <div>
@@ -106,7 +126,7 @@ function Review(props) {
           </div>
           <div className="ml-2">{props.review.rating}</div>
         </div>
-        <div>{props.review.content}</div>
+        <div>{props.review.comment}</div>
       </div>
     </div>
   )
