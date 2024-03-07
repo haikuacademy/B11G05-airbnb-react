@@ -9,14 +9,14 @@ function Reviews(props) {
   //params
   const params = useParams()
   console.log('params', params)
-
   const [reviews, setReviews] = useState([])
   const getReviews = async () => {
-    let { data } = await axios.get(
+    let result = await axios.get(
       `https://haiku-bnb.onrender.com/reviews?house_id=${params.id}`
     )
-    setReviews(data)
+    setReviews(result.data)
   }
+  console.log('reviews', reviews)
   useEffect(() => {
     getReviews()
   }, [])
@@ -34,7 +34,7 @@ function Reviews(props) {
               icon={faCommentDots}
               className="text-md text-gray-500 mr-2"
             />
-            32 Reviews
+            {`${reviews.length} Reviews`}
           </div>
           <div className="flex gap-2">
             <div>
