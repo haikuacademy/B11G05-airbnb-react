@@ -1,21 +1,21 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCommentDots } from '@fortawesome/free-regular-svg-icons'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 function Reviews(props) {
-  let reviews = [
-    {
-      content:
-        'Great place to stay! The house is very clean and comfortable, and the location is perfect. The host was very friendly and helpful! Highly recommend!',
-      rating: 5,
-      date: '22 Jan 2024',
-      author: {
-        firstName: 'Mike',
-        lastName: 'Lino',
-        picture: 'https://randomuser.me/api/portraits/men/84.jpg'
-      }
-    }
-  ]
+  const [reviews, setReviews] = useState([])
+  const getReviews = async () => {
+    let { data } = await axios.get(
+      `https://haiku-bnb.onrender.com/reviews?house_id=1`
+    )
+    setReviews(data)
+  }
+  useEffect(() => {
+    getReviews()
+  }, [])
+
   const reviewData = reviews.map((review, index) => (
     <Review key={index} review={review} />
   ))
