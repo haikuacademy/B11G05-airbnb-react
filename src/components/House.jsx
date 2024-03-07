@@ -4,23 +4,27 @@ import Nav from './Nav'
 import Reviews from './Reviews'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import { useParams } from 'react-router-dom'
 
 function House() {
+  //  use the useParams hook to extract the id of the house from the URL, console log params to see params.id
+  const params = useParams()
   //Replace the hardcoded house with a an empty object, using the useState hook
   const [house, setHouse] = useState({})
   const [loading, setLoading] = useState(true)
   //Create an async function getHouse that uses axios to get a house object from the API url /houses/1,
   // then sets the object as the value of the house state variable
   const getHouse = async () => {
-    let { data } = await axios.get('https://haiku-bnb.onrender.com/houses/1')
-    console.log('data------->', data)
+    let { data } = await axios.get(
+      `https://haiku-bnb.onrender.com/houses/${params.id}`
+    )
     setHouse(data)
-    console.log('house---->', house)
     setLoading(false)
   }
   // Use the useEffect hook to trigger the getHouse function when the component loads
   useEffect(() => {
     getHouse()
+    // eslint-disable-next-line
   }, [loading])
 
   //creating variables for getting booking date
