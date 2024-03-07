@@ -10,7 +10,8 @@ function HouseCard(props) {
 
   console.log(props)
   return (
-    <Link to="/houses/:id">
+    //  used a template literal (${props.house.house_id}) to dynamically generate the URL based on the house_id value from props
+    <Link to={`/houses/${props.house.house_id}`}>
       <div className="border border-gray-300 rounded-md pb-5 hover:shadow">
         {/* photo */}
         <div className="w-70">
