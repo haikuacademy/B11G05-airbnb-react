@@ -3,16 +3,19 @@ import { faCommentDots } from '@fortawesome/free-regular-svg-icons'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 
 function Reviews(props) {
   const [reviews, setReviews] = useState([])
+  const { id } = useParams()
+  console.log('params--------->', id)
 
   const getReviews = async () => {
     try {
       let { data } = await axios.get(
-        'https://haiku-bnb.onrender.com/reviews?house_id=1'
+        `https://haiku-bnb.onrender.com/reviews?house_id=${id}`
       )
-      console.log(data[0])
+      console.log(data)
       setReviews(data)
     } catch (error) {
       console.log(error)
