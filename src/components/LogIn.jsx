@@ -25,8 +25,8 @@ function LogIn() {
   const submitForm = async (e) => {
     e.preventDefault()
     let form = new FormData(e.target)
-    console.log('email', e.target.email.value)
-    console.log('password', e.target.password.value)
+    // console.log('email', e.target.email.value)
+    // console.log('password', e.target.password.value)
     let formObject = Object.fromEntries(form.entries())
     console.log('formobj', formObject)
     const response = await axios.post('https://haiku-bnb.onrender.com/login', {

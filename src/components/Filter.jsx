@@ -5,8 +5,17 @@ import {
   faDollarSign,
   faSort
 } from '@fortawesome/free-solid-svg-icons'
+import axios from 'axios'
+import { useEffect } from 'react'
 
 function Filter() {
+  const getLocation = async () => {
+    let { data } = await axios.get(`https://haiku-bnb.onrender.com/locations`)
+    console.log('data------->', data)
+  }
+  useEffect(() => {
+    getLocation()
+  }, [])
   return (
     <div>
       {/* Location */}
