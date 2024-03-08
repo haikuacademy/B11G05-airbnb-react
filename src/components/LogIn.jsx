@@ -5,39 +5,44 @@ import { useNavigate } from 'react-router-dom'
 
 function LogIn() {
   //state
-  const [emailisValid, setEmailIsValid] = useState(true)
+  // const [emailisValid, setEmailIsValid] = useState(true)
   const [error, setError] = useState('')
 
   // declare useNavigate
   const navigate = useNavigate()
 
   //function to validate email
-  const validateEmail = (email) => {
-    if (email.includes('@') && email.includes('.')) {
-      setEmailIsValid(true)
-      console.log('valid email', email)
-    } else {
-      console.log('not valid')
-      setEmailIsValid(false)
-    }
-  }
+  // const validateEmail = (email) => {
+  //   if (email.includes('@') && email.includes('.')) {
+  //     setEmailIsValid(true)
+  //     console.log('valid email', email)
+  //   } else {
+  //     console.log('not valid')
+  //     setEmailIsValid(false)
+  //   }
+  // }
   //function to prevent default then post data to api
   const submitForm = async (e) => {
     e.preventDefault()
+    let form = new FormData(e.target)
     console.log('email', e.target.email.value)
     console.log('password', e.target.password.value)
+    let formObject = Object.fromEntries(form.entries())
+    console.log('formobj', formObject)
     const response = await axios.post('https://haiku-bnb.onrender.com/login', {
-      email: e.target.email.value,
-      password: e.target.password.value
+      //or instead of passing formObject, passing the body like this
+      // email: e.target.email.value,
+      // password: e.target.password.value
+      formObject
     })
     // if you log in, navigate to the home page, if not, show error message
     if (response.data.error) {
       setError(response.data.error)
+      console.log('response', response.data)
       console.log(response.data.error)
-      console.log(error)
+      // console.log(error)
     } else if (response.data.message) {
       setError(response.data.message)
-      console.log(response.data.message)
       navigate('/')
     }
   }
@@ -59,7 +64,7 @@ function LogIn() {
           <div className="space-y-1">
             <div className="text-gray-400 text-xs">Email</div>
             <input
-              onChange={(e) => validateEmail(e.target.value)}
+              // onChange={(e) => validateEmail(e.target.value)}
               name="email"
               type="email"
               className="border w-full p-1 rounded"
@@ -81,10 +86,16 @@ function LogIn() {
           </div>
         </form>
         {/* add error message */}
-        {emailisValid ? null : (
-          <span className=" text-red-500 text-xs">Invalid Email</span>
-        )}
-        {error ? <span className=" text-red-500 text-xs">{error}</span> : null}
+        {/* {emailisValid ? null : (
+          <span className="flex justify-center text-red-500 text-xs">
+            Invalid Email
+          </span>
+        )} */}
+        {error ? (
+          <span className="flex justify-center text-red-500 text-xs">
+            {error}
+          </span>
+        ) : null}
 
         <div className="flex text-xs mt-3 gap-2">
           <div>New to Airbnb?</div>

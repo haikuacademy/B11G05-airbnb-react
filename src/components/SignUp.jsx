@@ -36,6 +36,7 @@ function SignUp() {
     e.preventDefault()
     console.log('email', e.target.email.value)
     console.log('password', e.target.password.value)
+
     const response = await axios.post('https://haiku-bnb.onrender.com/signup', {
       first_name: e.target.first_name.value,
       last_name: e.target.last_name.value,
