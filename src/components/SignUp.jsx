@@ -1,4 +1,18 @@
+import { useState } from 'react'
+
 function SignUp() {
+  //create a "state" variable validEmail
+  const [validEmail, setValidEmail] = useState(true)
+  //function validateEmail that takes a string and checks if the string is a valid email.
+  const validateEmail = (email) => {
+    if (email.includes('@') && email.includes('.')) {
+      setValidEmail(true)
+      console.log('valid email', email)
+    } else {
+      console.log('not valid')
+      setValidEmail(false)
+    }
+  }
   return (
     <div className=" flex mx-auto justify-center m-5">
       <div className=" border rounded p-4">
@@ -20,8 +34,16 @@ function SignUp() {
             <input type="text" className="border m-2 w-full" />
           </div>
           <div>
-            <div>Email</div>{' '}
-            <input type="email" className="border m-2 w-full" />
+            <div>Email</div>
+            {/* add error message */}
+            {validEmail ? null : (
+              <span className=" text-red-500 text-xs">Invalid Email</span>
+            )}
+            <input
+              onChange={(e) => validateEmail(e.target.value)}
+              type="email"
+              className="border m-2 w-full"
+            />
           </div>
           <div>
             <div>Password</div>
