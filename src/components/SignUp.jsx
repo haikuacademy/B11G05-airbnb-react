@@ -1,16 +1,26 @@
 import { useState } from 'react'
 
 function SignUp() {
-  //create a "state" variable validEmail
+  //create a "state" variable validEmail and validPassword
   const [validEmail, setValidEmail] = useState(true)
+  const [validPassword, setValidPassword] = useState(true)
   //function validateEmail that takes a string and checks if the string is a valid email.
   const validateEmail = (email) => {
     if (email.includes('@') && email.includes('.')) {
       setValidEmail(true)
       console.log('valid email', email)
     } else {
-      console.log('not valid')
+      console.log('not valid', email)
       setValidEmail(false)
+    }
+  }
+  const validatePassword = (password) => {
+    if (password.length > 6) {
+      setValidPassword(true)
+      console.log('valid password', password)
+    } else {
+      console.log('not valid', password)
+      setValidPassword(false)
     }
   }
   return (
@@ -47,7 +57,15 @@ function SignUp() {
           </div>
           <div>
             <div>Password</div>
-            <input type="password" className="border m-2 w-full" />
+            {/* add error message */}
+            {validPassword ? null : (
+              <span className=" text-red-500 text-xs">Invalid Password</span>
+            )}
+            <input
+              onChange={(e) => validatePassword(e.target.value)}
+              type="password"
+              className="border m-2 w-full"
+            />
           </div>
           <div>
             <div>Profile Picture</div>
