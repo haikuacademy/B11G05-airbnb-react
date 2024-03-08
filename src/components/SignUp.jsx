@@ -11,7 +11,7 @@ function SignUp() {
   const navigate = useNavigate()
 
   //functions
-  //checks if email has @or.
+  //checks if email has @ and . validEmail is true
   const validateEmail = (email) => {
     if (email.includes('@') && email.includes('.')) {
       setValidEmail(true)
@@ -79,7 +79,7 @@ function SignUp() {
           </div>
           <div>
             <span>Email</span>
-            {/* add error message */}
+            {/* add error message when validEmail is false*/}
             {validEmail ? null : (
               <span className=" text-red-500 text-xs pl-1">Invalid Email</span>
             )}
@@ -92,7 +92,7 @@ function SignUp() {
           </div>
           <div>
             <span>Password</span>
-            {/* add error message */}
+            {/* add error message when validPassword is false*/}
             {validPassword ? null : (
               <span className=" text-red-500 text-xs pl-1">
                 Password too short

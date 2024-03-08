@@ -47,7 +47,8 @@ function Houses() {
     <>
       <div className=" container mx-auto">
         <Nav />
-        <Filter />
+        {/* Pass setHouses as a prop to the Filter component */}
+        <Filter setHouses={setHouses} />
         {/* loop through the houses array and render to HouseCard */}
         <div className="grid gap-4 grid-cols-5 mb-5">{listOfHouseCards}</div>
       </div>
