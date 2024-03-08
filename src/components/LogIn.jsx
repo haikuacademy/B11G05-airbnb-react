@@ -30,7 +30,7 @@ function LogIn() {
       email: e.target.email.value,
       password: e.target.password.value
     })
-    // if you log in, navigate to the home page
+    // if you log in, navigate to the home page, if not, show error message
     if (response.data.error) {
       setError(response.data.error)
       console.log(response.data.error)
