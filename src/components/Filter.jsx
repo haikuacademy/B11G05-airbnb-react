@@ -8,6 +8,7 @@ import {
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 
+//received setHouses from Houses
 function Filter({ setHouses }) {
   //use State Hook to store the array in a state variable locations
   const [locations, setLocations] = useState([])
@@ -17,11 +18,11 @@ function Filter({ setHouses }) {
     let { data } = await axios.get(`https://haiku-bnb.onrender.com/locations`)
     setLocations(data)
   }
-  //function to prevent default then post data to api
+  //function to prevent default then get data to api
   const submitForm = async (e) => {
     try {
       e.preventDefault()
-      //query for url
+      //making query for url
       //encodeURIComponent removes spaces between values
       let queryArray = []
       if (e.target.location.value) {
@@ -41,8 +42,8 @@ function Filter({ setHouses }) {
       if (e.target.search.value) {
         queryArray.push(`search=${e.target.search.value}`)
       }
-      let result = `https://haiku-bnb.onrender.com/houses?${queryArray.join('&')}`
-      const response = await axios.get(result)
+      let url = `https://haiku-bnb.onrender.com/houses?${queryArray.join('&')}`
+      const response = await axios.get(url)
       setHouses(response.data)
     } catch (error) {
       console.error(error)
