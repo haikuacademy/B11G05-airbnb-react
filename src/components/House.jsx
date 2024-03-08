@@ -28,7 +28,7 @@ function House() {
   // Use the useEffect hook to trigger the getHouse function when the component loads
   useEffect(() => {
     getHouse()
-  }, [loading])
+  }, [])
 
   //creating variables for getting booking date
   const [startDate, setStartDate] = useState('')
