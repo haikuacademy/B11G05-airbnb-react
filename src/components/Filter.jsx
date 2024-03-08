@@ -15,39 +15,38 @@ function Filter({ setHouses }) {
   // make an initial GET request to the /locations endpoint of the API
   const getLocation = async () => {
     let { data } = await axios.get(`https://haiku-bnb.onrender.com/locations`)
-    console.log('data------->', data)
     setLocations(data)
-    console.log('locations------->', locations)
   }
   //function to prevent default then post data to api
   const submitForm = async (e) => {
-    e.preventDefault()
-    console.log('location', e.target.location.value)
-    console.log('min_rooms', e.target.min_rooms.value)
-
-    //query for url
-    //encodeURIComponent removes spaces between values
-    let queryArray = []
-    if (e.target.location.value) {
-      queryArray.push(`location=${encodeURIComponent(e.target.location.value)}`)
+    try {
+      e.preventDefault()
+      //query for url
+      //encodeURIComponent removes spaces between values
+      let queryArray = []
+      if (e.target.location.value) {
+        queryArray.push(
+          `location=${encodeURIComponent(e.target.location.value)}`
+        )
+      }
+      if (e.target.min_rooms.value) {
+        queryArray.push(`min_rooms=${e.target.min_rooms.value}`)
+      }
+      if (e.target.max_price.value) {
+        queryArray.push(`max_price=${e.target.max_price.value}`)
+      }
+      if (e.target.sort.value) {
+        queryArray.push(`sort=${e.target.sort.value}`)
+      }
+      if (e.target.search.value) {
+        queryArray.push(`search=${e.target.search.value}`)
+      }
+      let result = `https://haiku-bnb.onrender.com/houses?${queryArray.join('&')}`
+      const response = await axios.get(result)
+      setHouses(response.data)
+    } catch (error) {
+      console.error(error)
     }
-    if (e.target.min_rooms.value) {
-      queryArray.push(`min_rooms=${e.target.min_rooms.value}`)
-    }
-    if (e.target.max_price.value) {
-      queryArray.push(`max_price=${e.target.max_price.value}`)
-    }
-    if (e.target.sort.value) {
-      queryArray.push(`sort=${e.target.sort.value}`)
-    }
-    if (e.target.search.value) {
-      queryArray.push(`search=${e.target.search.value}`)
-    }
-    let result = `https://haiku-bnb.onrender.com/houses?${queryArray.join('&')}`
-    console.log(result)
-    const response = await axios.get(result)
-    console.log('response.data', response.data)
-    setHouses(response.data)
   }
 
   useEffect(() => {
