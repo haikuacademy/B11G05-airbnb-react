@@ -69,6 +69,7 @@ function SignUp() {
       password: e.target.password.value,
       profile_picture: e.target.profile_picture.value
     }
+    console.log(formData)
     try {
       const response = await axios.post(
         'https://haiku-bnb.onrender.com/signup',
