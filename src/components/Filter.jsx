@@ -120,10 +120,6 @@ function Filter({ setHouses }) {
             name="sort"
             className="border border-gray-300 rounded-md py-2 pl-10 w-60"
           >
-            {/* <option selected>sort by</option>
-            <option>location</option>
-            <option>prices</option>
-            <option>rooms</option> */}
             <option value="">sort by</option>
             <option value="price">price: low to high</option>
             <option value="rooms">rooms: high to low</option>
