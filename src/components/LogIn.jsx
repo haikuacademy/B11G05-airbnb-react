@@ -29,16 +29,17 @@ function LogIn() {
     // console.log('password', e.target.password.value)
     let formObject = Object.fromEntries(form.entries())
     console.log('formobj', formObject)
-    const response = await axios.post('https://haiku-bnb.onrender.com/login', {
+    const response = await axios.post(
+      'https://haiku-bnb.onrender.com/login',
       //or instead of passing formObject, passing the body like this
       // email: e.target.email.value,
       // password: e.target.password.value
       formObject
-    })
-    // if you log in, navigate to the home page, if not, show error message
+    )
+    // show error message
     if (response.data.error) {
       setError(response.data.error)
-      console.log('response', response.data)
+      console.log('response', response.data.error)
       console.log(response.data.error)
       // console.log(error)
     } else if (response.data.message) {
