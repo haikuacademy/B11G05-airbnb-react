@@ -1,11 +1,41 @@
 import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 function Booking({ house }) {
+  console.log(house)
   //creating variables for getting booking date
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
   const [nights, setNights] = useState(0)
   const [totalPrice, setTotalPrice] = useState(0)
+
+  // Function to get check-in date from the form
+  const getCheckInDate = (e) => {
+    setStartDate(e.target.value)
+  }
+
+  // Function to get check-out date from the form
+  const getCheckOutDate = (e) => {
+    setEndDate(e.target.value)
+  }
+
+  // Function to create booking
+  const createBooking = async (e) => {
+    //prevent browser from reload
+    e.preventDefault()
+    //get data from form from e.target
+    const form = new FormData(e.target)
+    let formObject = Object.fromEntries(form.entries())
+    console.log('formObject', formObject)
+    //get house id from the props
+    formObject.house_id = house.house_id
+    console.log('formObject with house_id', formObject)
+    let response = await axios.post(
+      'https://haiku-bnb.onrender.com/bookings',
+      formObject
+    )
+    console.log('response', response.data)
+  }
 
   useEffect(() => {
     if (startDate && endDate) {
@@ -18,28 +48,17 @@ function Booking({ house }) {
   }, [startDate, endDate])
 
   // useEffect to update totalPrice
-
   useEffect(() => {
     if (house) {
       setTotalPrice(nights * house.price)
     }
   }, [nights])
 
-  // Function to get check-in date from the form
-  const getCheckInDate = (e) => {
-    setStartDate(e.target.value)
-  }
-
-  // Function to get check-out date from the form
-  const getCheckOutDate = (e) => {
-    setEndDate(e.target.value)
-  }
-
   return (
     <>
       {/* booking form */}
       <div className="border border-gray-200 self-start my-5 ml-5 p-4 rounded-md">
-        <form>
+        <form onSubmit={createBooking}>
           <span className="flex text-xl font-bold">
             <div>$</div>
             <div>{house.price}</div>
@@ -50,6 +69,7 @@ function Booking({ house }) {
             <div className="w-full">
               <div className=" text-xs text-gray-400">Check-in</div>
               <input
+                name="from_date"
                 type="date"
                 className="border border-gray-200 rounded-md p-2 w-full"
                 value={startDate}
@@ -60,6 +80,7 @@ function Booking({ house }) {
             <div className="w-full">
               <div className=" text-xs text-gray-400">Check-out</div>
               <input
+                name="to_date"
                 type="date"
                 className="border border-gray-200 rounded-md p-2 w-full"
                 value={endDate}
@@ -68,6 +89,7 @@ function Booking({ house }) {
             </div>
           </div>
           <textarea
+            name="message"
             placeholder="Please send a message to the host..."
             className="border border-gray-200 rounded-md mt-2 w-full p-2"
             rows="7"
