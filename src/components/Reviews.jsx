@@ -21,13 +21,6 @@ function Reviews(props) {
     setReviews(result.data)
   }
   console.log('reviews', reviews)
-  useEffect(() => {
-    getReviews()
-  }, [])
-
-  const reviewData = reviews.map((review, index) => (
-    <Review key={index} review={review} />
-  ))
 
   //form
   const createReview = async (e) => {
@@ -37,11 +30,19 @@ function Reviews(props) {
     console.log(e.target)
     const form = new FormData(e.target)
     let formObject = Object.fromEntries(form.entries())
-    console.log(formObject)
     //get house id from the props
     formObject.house_id = props.house.house_id
-    console.log(formObject)
+    console.log('formObject', formObject)
   }
+
+  useEffect(() => {
+    getReviews()
+  }, [])
+
+  const reviewData = reviews.map((review, index) => (
+    <Review key={index} review={review} />
+  ))
+
   return (
     <div className="grid grid-cols-3 gap-x-48 border-t-2 py-5">
       <div className="col-span-2 mt-5">
@@ -70,32 +71,38 @@ function Reviews(props) {
         </div>
         {reviewData}
       </div>
-      <div className="border border-gray-200 self-start my-5 p-4 rounded-md">
-        <div>Leave a Review</div>
-        <div className="mt-2 text-sm">
-          <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} /> 0
+      {/* Thank you for your review message */}
+      {setHasBeenReviewed ? (
+        <div>Thank you for your review!</div>
+      ) : (
+        <div className="border border-gray-200 self-start my-5 p-4 rounded-md">
+          <div>Leave a Review</div>
+          <div className="mt-2 text-sm">
+            <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} /> 0
+          </div>
+          <form onSubmit={createReview}>
+            <div className=" py-2 text-sm flex justify-start">
+              <input type="radio" name="rating" value="1" className="mr-1" />
+              <input type="radio" name="rating" value="2" className="mr-1" />
+              <input type="radio" name="rating" value="3" className="mr-1" />
+              <input type="radio" name="rating" value="4" className="mr-1" />
+              <input type="radio" name="rating" value="5" className="mr-1" />
+            </div>
+            <div className=" text-sm justify-start mt-3">
+              <textarea
+                name="content"
+                className=" border w-full col-span-8 text-sm text-gray-300 pb-16 pr-16"
+                placeholder="Please leave a review for this house..."
+              ></textarea>
+            </div>
+            <div className=" text-sm text-white mt-1">
+              <button className=" border bg-rose-400 p-2 rounded-md">
+                Submit Review
+              </button>
+            </div>
+          </form>
         </div>
-        <form onSubmit={{ createReview }}>
-          <div className=" py-2 text-sm flex justify-start">
-            <input type="radio" name="rating" value="1" className="mr-1" />
-            <input type="radio" name="rating" value="2" className="mr-1" />
-            <input type="radio" name="rating" value="3" className="mr-1" />
-            <input type="radio" name="rating" value="4" className="mr-1" />
-            <input type="radio" name="rating" value="5" className="mr-1" />
-          </div>
-          <div className=" text-sm justify-start mt-3">
-            <textarea
-              className=" border w-full col-span-8 text-sm text-gray-300 pb-16 pr-16"
-              placeholder="Please leave a review for this house..."
-            ></textarea>
-          </div>
-          <div className=" text-sm text-white mt-1">
-            <button className=" border bg-rose-400 p-2 rounded-md">
-              Submit Review
-            </button>
-          </div>
-        </form>
-      </div>
+      )}
     </div>
   )
 }
