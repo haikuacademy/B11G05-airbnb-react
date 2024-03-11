@@ -7,6 +7,14 @@ axios.defaults.withCredentials = true
 function Listings() {
   const [listings, setListings] = useState([])
   const [error, setError] = useState(false)
+  const [formValues, setFormValues] = useState({
+    location: '',
+    rooms: 0,
+    bathrooms: 0,
+    price: 0,
+    description: '',
+    photos: ['', '', '', '', '', '', '', '', '']
+  })
   //post request for form
   const createHouse = async (e) => {
     try {
@@ -29,6 +37,15 @@ function Listings() {
         setError(response.data.error)
       } else {
         setListings([response.data, ...listings])
+        // Reset the form values after submitting the form
+        setFormValues({
+          location: '',
+          rooms: 0,
+          bathrooms: 0,
+          price: 0,
+          description: '',
+          photos: ['', '', '', '', '', '', '', '', '']
+        })
       }
     } catch (error) {
       console.error('An error occurred:', error.message)
