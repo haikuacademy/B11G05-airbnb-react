@@ -78,7 +78,7 @@ function SignUp() {
       if (response.data.error) {
         setError(response.data.error)
       } else {
-        setError(response.data.message)
+        // setError(response.data.message)
         navigate('/')
       }
     } catch (error) {
@@ -90,13 +90,13 @@ function SignUp() {
   return (
     <div className="flex mx-auto justify-center mt-12">
       <div className="border rounded p-6 shadow-md w-72">
-        <div className=" flex justify-center">
+        <Link to="/" className=" flex justify-center">
           <img
             src="https://res.cloudinary.com/dsko6ntfj/image/upload/v1642399114/portal/web%20development%20beginners/05%20Project%20Airbnb/assets/logo-airbnb.png"
             alt="Airbnb logo"
             className="w-20 mb-4"
           />
-        </div>
+        </Link>
 
         <form className="space-y-2" onSubmit={submitForm}>
           <div className="space-y-1">
