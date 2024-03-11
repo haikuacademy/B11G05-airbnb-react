@@ -6,6 +6,7 @@ axios.defaults.withCredentials = true
 
 function Listings() {
   const [listings, setListings] = useState([])
+  const [error, setError] = useState(false)
   //post request for form
   const createHouse = async (e) => {
     //1. prevent browser from reload
@@ -23,7 +24,11 @@ function Listings() {
     )
     console.log('response', response.data)
     // Update the state variable with the new house object
-    setListings([response.data, ...listings])
+    if (response.data.error) {
+      setError(response.data.error)
+    } else {
+      setListings([response.data, ...listings])
+    }
   }
 
   // let listings = [
@@ -147,6 +152,10 @@ function Listings() {
             <button className=" bg-rose-400 text-white rounded-md p-3">
               List House
             </button>
+            {/* error message */}
+            {error ? (
+              <div className="self-center text-red-500 text-xs">{error}</div>
+            ) : null}
           </div>
         </div>
       </form>

@@ -12,7 +12,7 @@ function Reviews(props) {
 
   //state
   const [reviews, setReviews] = useState([])
-  const [reviewed, setReviewed] = useState(false)
+  // const [reviewed, setReviewed] = useState(false)
   const [hasBeenReviewed, setHasBeenReviewed] = useState(false)
 
   //post request for form

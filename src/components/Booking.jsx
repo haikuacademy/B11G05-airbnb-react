@@ -126,9 +126,7 @@ function Booking({ house }) {
         )}
         {/* add error message */}
         {error ? (
-          <span className=" text-red-500 text-xs pl-1">
-            Please enter the correct check-in and check-out date.
-          </span>
+          <span className=" text-red-500 text-xs pl-1">{error}</span>
         ) : null}
       </div>
     </>
