@@ -17,24 +17,28 @@ function Reviews(props) {
 
   //post request for form
   const createReview = async (e) => {
-    //1. prevent browser from reload
-    e.preventDefault()
-    //2 get data from form from e.target
-    const form = new FormData(e.target)
-    let formObject = Object.fromEntries(form.entries())
-    console.log('formObject', formObject)
-    //get house id from the props
-    formObject.house_id = props.house.house_id
-    console.log('formObject with house_id', formObject)
-    let response = await axios.post(
-      'https://haiku-bnb.onrender.com/reviews',
-      formObject
-    )
-    console.log('response', response.data)
+    try {
+      //1. prevent browser from reload
+      e.preventDefault()
+      //2 get data from form from e.target
+      const form = new FormData(e.target)
+      let formObject = Object.fromEntries(form.entries())
+      console.log('formObject', formObject)
+      //get house id from the props
+      formObject.house_id = props.house.house_id
+      console.log('formObject with house_id', formObject)
+      let response = await axios.post(
+        'https://haiku-bnb.onrender.com/reviews',
+        formObject
+      )
+      console.log('response', response.data)
 
-    //check if the review is posted
-    setHasBeenReviewed(true)
-    setReviews([response.data, ...reviews])
+      //check if the review is posted
+      setHasBeenReviewed(true)
+      setReviews([response.data, ...reviews])
+    } catch (error) {
+      console.error('An error occurred:', error.message)
+    }
   }
 
   const getReviews = async () => {

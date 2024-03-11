@@ -9,25 +9,29 @@ function Listings() {
   const [error, setError] = useState(false)
   //post request for form
   const createHouse = async (e) => {
-    //1. prevent browser from reload
-    e.preventDefault()
-    //2 get data from form from e.target
-    const form = new FormData(e.target)
-    let formObject = Object.fromEntries(form.entries())
-    console.log('formObject', formObject)
-    //retrieves all 'photos' field in an array of strings
-    formObject.photos = form.getAll('photos')
-    console.log('formObject with photos', formObject)
-    let response = await axios.post(
-      'https://haiku-bnb.onrender.com/houses',
-      formObject
-    )
-    console.log('response', response.data)
-    // Update the state variable with the new house object
-    if (response.data.error) {
-      setError(response.data.error)
-    } else {
-      setListings([response.data, ...listings])
+    try {
+      //1. prevent browser from reload
+      e.preventDefault()
+      //2 get data from form from e.target
+      const form = new FormData(e.target)
+      let formObject = Object.fromEntries(form.entries())
+      console.log('formObject', formObject)
+      //retrieves all 'photos' field in an array of strings
+      formObject.photos = form.getAll('photos')
+      console.log('formObject with photos', formObject)
+      let response = await axios.post(
+        'https://haiku-bnb.onrender.com/houses',
+        formObject
+      )
+      console.log('response', response.data)
+      // Update the state variable with the new house object
+      if (response.data.error) {
+        setError(response.data.error)
+      } else {
+        setListings([response.data, ...listings])
+      }
+    } catch (error) {
+      console.error('An error occurred:', error.message)
     }
   }
 
