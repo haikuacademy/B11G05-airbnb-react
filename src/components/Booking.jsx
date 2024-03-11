@@ -9,6 +9,7 @@ function Booking({ house }) {
   const [nights, setNights] = useState(0)
   const [totalPrice, setTotalPrice] = useState(0)
   const [booked, hasBooked] = useState(false)
+  const [error, setError] = useState('')
 
   // Function to get check-in date from the form
   const getCheckInDate = (e) => {
@@ -22,24 +23,33 @@ function Booking({ house }) {
 
   // Function to create booking
   const createBooking = async (e) => {
-    //prevent browser from reload
-    e.preventDefault()
-    //get data from form from e.target
-    const form = new FormData(e.target)
-    let formObject = Object.fromEntries(form.entries())
-    console.log('formObject', formObject)
-    //get house id from the props
-    formObject.house_id = house.house_id
-    console.log('formObject with house_id', formObject)
-    let response = await axios.post(
-      'https://haiku-bnb.onrender.com/bookings',
-      formObject
-    )
-    console.log('response', response.data)
-    //check if the review is posted
-    hasBooked(true)
+    try {
+      //prevent browser from reload
+      e.preventDefault()
+      //get data from form from e.target
+      const form = new FormData(e.target)
+      let formObject = Object.fromEntries(form.entries())
+      console.log('formObject', formObject)
+      //get house id from the props
+      formObject.house_id = house.house_id
+      console.log('formObject with house_id', formObject)
+      let response = await axios.post(
+        'https://haiku-bnb.onrender.com/bookings',
+        formObject
+      )
+      console.log('response', response.data)
+      //check if there's an error with booking date
+      if (response.data.error) {
+        setError(response.data.error)
+        hasBooked(false)
+      } else {
+        //check if the review is posted
+        hasBooked(true)
+      }
+    } catch (error) {
+      console.error('An error occurred:', error.message)
+    }
   }
-
   useEffect(() => {
     if (startDate && endDate) {
       const start = new Date(startDate)
@@ -114,6 +124,12 @@ function Booking({ house }) {
             </div>
           </form>
         )}
+        {/* add error message */}
+        {error ? (
+          <span className=" text-red-500 text-xs pl-1">
+            Please enter the correct check-in and check-out date.
+          </span>
+        ) : null}
       </div>
     </>
   )
