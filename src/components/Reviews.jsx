@@ -12,7 +12,30 @@ function Reviews(props) {
 
   //state
   const [reviews, setReviews] = useState([])
+  const [reviewed, setReviewed] = useState(false)
   const [hasBeenReviewed, setHasBeenReviewed] = useState(false)
+
+  //post request for form
+  const createReview = async (e) => {
+    //1. prevent browser from reload
+    e.preventDefault()
+    //2 get data from form from e.target
+    const form = new FormData(e.target)
+    let formObject = Object.fromEntries(form.entries())
+    console.log('formObject', formObject)
+    //get house id from the props
+    formObject.house_id = props.house.house_id
+    console.log('formObject with house_id', formObject)
+    let response = await axios.post(
+      'https://haiku-bnb.onrender.com/reviews',
+      formObject
+    )
+    console.log('response', response.data)
+
+    //check if the review is posted
+    setHasBeenReviewed(true)
+    setReviews([response.data, ...reviews])
+  }
 
   const getReviews = async () => {
     let result = await axios.get(
@@ -22,23 +45,11 @@ function Reviews(props) {
   }
   console.log('reviews', reviews)
 
-  //form
-  const createReview = async (e) => {
-    //1. prevent browser from reload
-    e.preventDefault()
-    //2 get data from form from e.target
-    console.log(e.target)
-    const form = new FormData(e.target)
-    let formObject = Object.fromEntries(form.entries())
-    //get house id from the props
-    formObject.house_id = props.house.house_id
-    console.log('formObject', formObject)
-  }
-
   useEffect(() => {
     getReviews()
   }, [])
 
+  // passing reviews with map
   const reviewData = reviews.map((review, index) => (
     <Review key={index} review={review} />
   ))
@@ -72,13 +83,15 @@ function Reviews(props) {
         {reviewData}
       </div>
       {/* Thank you for your review message */}
-      {setHasBeenReviewed ? (
-        <div>Thank you for your review!</div>
+      {hasBeenReviewed ? (
+        <div className=" bg-emerald-50 text-center rounded p-6 mt-3 h-20">
+          Thank you for your review!
+        </div>
       ) : (
         <div className="border border-gray-200 self-start my-5 p-4 rounded-md">
           <div>Leave a Review</div>
           <div className="mt-2 text-sm">
-            <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} /> 0
+            <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} />0
           </div>
           <form onSubmit={createReview}>
             <div className=" py-2 text-sm flex justify-start">
@@ -142,7 +155,7 @@ function Review(props) {
           </div>
           <div className="ml-2">{props.review.rating}</div>
         </div>
-        <div>{props.review.comment}</div>
+        <div>{props.review.content}</div>
       </div>
     </div>
   )

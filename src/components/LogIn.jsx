@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
-
+axios.defaults.withCredentials = true
 function LogIn() {
   //state
   // const [emailisValid, setEmailIsValid] = useState(true)
@@ -36,6 +36,7 @@ function LogIn() {
       // password: e.target.password.value
       formObject
     )
+    console.log(response)
     // show error message
     if (response.data.error) {
       setError(response.data.error)
