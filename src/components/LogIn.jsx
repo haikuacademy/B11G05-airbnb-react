@@ -73,3 +73,5 @@ function LogIn() {
 }
 
 export default LogIn
+
+axios.defaults.withCredentials = true
