@@ -139,3 +139,5 @@ function SignUp() {
 }
 
 export default SignUp
+
+axios.defaults.withCredentials = true
