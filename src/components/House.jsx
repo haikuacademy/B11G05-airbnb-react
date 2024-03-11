@@ -5,7 +5,7 @@ import Reviews from './Reviews'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
-import Bookings from './Bookings'
+import Booking from './Booking'
 
 function House() {
   //useParams hook to extract the id  from params.id of the house from the URL
@@ -72,7 +72,7 @@ function House() {
               <div className="my-8 text-sm">{house.description}</div>
             </div>
             {/* Use the Booking component and pass the house prop */}
-            <Bookings house={house} />
+            <Booking house={house} />
           </div>
           <Reviews house={house} />
         </>
