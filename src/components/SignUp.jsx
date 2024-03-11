@@ -9,13 +9,13 @@ function SignUp() {
   const [lastName, setLastName] = useState(true)
   const [emailisValid, setEmailIsValid] = useState(true)
   const [passwordIsValid, setPasswordIsValid] = useState(true)
-  const [profilePicture, setProfilePicture] = useState(true)
+  const [Picture, setPicture] = useState(true)
   const [error, setError] = useState('')
   const navigate = useNavigate()
 
   // Functions
   const validateEmail = (email) => {
-    if ((email.includes('@') && email.includes('.')) || !email) {
+    if (email.includes('@') && email.includes('.')) {
       console.log(email)
       setEmailIsValid(true)
     } else {
@@ -24,7 +24,7 @@ function SignUp() {
     }
   }
   const validatePassword = (password) => {
-    if (password.length > 6 || !password) {
+    if (password.length > 6) {
       console.log(password)
       setPasswordIsValid(true)
     } else {
@@ -33,7 +33,7 @@ function SignUp() {
     }
   }
   const validateFirstName = (first_name) => {
-    if (first_name.includes('') || !first_name) {
+    if (first_name.includes('')) {
       console.log(first_name)
       setFirstName(true)
     } else {
@@ -42,7 +42,7 @@ function SignUp() {
     }
   }
   const validateLastName = (last_name) => {
-    if (last_name.includes('') || !last_name) {
+    if (last_name.includes('')) {
       console.log(last_name)
       setLastName(true)
     } else {
@@ -51,12 +51,12 @@ function SignUp() {
     }
   }
   const validateProfilePicture = (profile_picture) => {
-    if (profile_picture.includes('') || !profile_picture) {
+    if (profile_picture.includes('')) {
       console.log(profile_picture)
-      setProfilePicture(true)
+      setPicture(true)
     } else {
       console.log('not valid')
-      setProfilePicture(false)
+      setPicture(false)
     }
   }
 
@@ -67,7 +67,7 @@ function SignUp() {
       last_name: e.target.last_name.value,
       email: e.target.email.value,
       password: e.target.password.value,
-      profile_picture: e.target.profile_picture.value
+      picture: e.target.picture.value
     }
     console.log(formData)
     try {
@@ -75,6 +75,7 @@ function SignUp() {
         'https://haiku-bnb.onrender.com/signup',
         formData
       )
+      console.log(response)
       if (response.data.error) {
         setError(response.data.error)
       } else {
@@ -140,7 +141,7 @@ function SignUp() {
             <div className="text-gray-400 text-xs">Profile Picture</div>
 
             <input
-              name="profile_picture"
+              name="picture"
               type="text"
               placeholder="https://..."
               className="border w-full p-1 rounded"
@@ -184,7 +185,7 @@ function SignUp() {
               password too short
             </span>
           )}
-          {!profilePicture && (
+          {!Picture && (
             <span
               className="flex justify-center text-red-400 p-8 py-2
               w-full text-xs"
