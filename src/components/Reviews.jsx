@@ -9,7 +9,11 @@ function Reviews(props) {
   //params
   const params = useParams()
   console.log('params', params)
+
+  //state
   const [reviews, setReviews] = useState([])
+  const [hasBeenReviewed, setHasBeenReviewed] = useState(false)
+
   const getReviews = async () => {
     let result = await axios.get(
       `https://haiku-bnb.onrender.com/reviews?house_id=${params.id}`
@@ -25,6 +29,19 @@ function Reviews(props) {
     <Review key={index} review={review} />
   ))
 
+  //form
+  const createReview = async (e) => {
+    //1. prevent browser from reload
+    e.preventDefault()
+    //2 get data from form from e.target
+    console.log(e.target)
+    const form = new FormData(e.target)
+    let formObject = Object.fromEntries(form.entries())
+    console.log(formObject)
+    //get house id from the props
+    formObject.house_id = props.house.house_id
+    console.log(formObject)
+  }
   return (
     <div className="grid grid-cols-3 gap-x-48 border-t-2 py-5">
       <div className="col-span-2 mt-5">
@@ -58,8 +75,15 @@ function Reviews(props) {
         <div className="mt-2 text-sm">
           <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} /> 0
         </div>
-        <form>
-          <div className=" text-sm justify-center mt-3">
+        <form onSubmit={{ createReview }}>
+          <div className=" py-2 text-sm flex justify-start">
+            <input type="radio" name="rating" value="1" className="mr-1" />
+            <input type="radio" name="rating" value="2" className="mr-1" />
+            <input type="radio" name="rating" value="3" className="mr-1" />
+            <input type="radio" name="rating" value="4" className="mr-1" />
+            <input type="radio" name="rating" value="5" className="mr-1" />
+          </div>
+          <div className=" text-sm justify-start mt-3">
             <textarea
               className=" border w-full col-span-8 text-sm text-gray-300 pb-16 pr-16"
               placeholder="Please leave a review for this house..."
