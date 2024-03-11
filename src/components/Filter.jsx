@@ -26,10 +26,9 @@ function Filter({ setHouses }) {
     console.log('min_rooms', e.target.min_rooms.value)
 
     //query for url
-    //encodeURIComponent removes spaces between values
     let queryArray = []
     if (e.target.location.value) {
-      queryArray.push(`location=${encodeURIComponent(e.target.location.value)}`)
+      queryArray.push(`location=${e.target.location.value}`)
     }
     if (e.target.min_rooms.value) {
       queryArray.push(`min_rooms=${e.target.min_rooms.value}`)
