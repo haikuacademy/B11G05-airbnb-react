@@ -47,7 +47,7 @@ function Profile() {
     }
   }
 
-  //remove jwt token when logout with local storage
+  //remove jwt token when logging out with local storage
   const logout = async (e) => {
     e.preventDefault()
     try {
