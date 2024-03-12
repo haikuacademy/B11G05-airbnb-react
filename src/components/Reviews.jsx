@@ -1,31 +1,50 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCommentDots } from '@fortawesome/free-regular-svg-icons'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
-import axios from 'axios'
 import { useState, useEffect } from 'react'
+import axios from 'axios'
 import { useParams } from 'react-router-dom'
 
 function Reviews(props) {
+  //params
+  const params = useParams()
+
+  //state
   const [reviews, setReviews] = useState([])
-  const { id } = useParams()
-  console.log('params--------->', id)
+  const [hasBeenReviewed, setHasBeenReviewed] = useState(false)
+
+  //post request for form
+  const createReview = async (e) => {
+    //1. prevent browser from reload
+    e.preventDefault()
+    //2 get data from form from e.target
+    const form = new FormData(e.target)
+    let formObject = Object.fromEntries(form.entries())
+    //add house id from props.house.house_id
+    formObject.house_id = props.house.house_id
+    console.log('formObject with house_id', formObject)
+    let response = await axios.post(
+      'https://haiku-bnb.onrender.com/reviews',
+      formObject
+    )
+    //check if the review is posted to show thank you message
+    setHasBeenReviewed(true)
+    //creating a new array with the most recent review at the beginning, followed by all the existing reviews
+    setReviews([response.data, ...reviews])
+  }
 
   const getReviews = async () => {
-    try {
-      let { data } = await axios.get(
-        `https://haiku-bnb.onrender.com/reviews?house_id=${id}`
-      )
-      console.log(data)
-      setReviews(data)
-    } catch (error) {
-      console.log(error)
-    }
+    let result = await axios.get(
+      `https://haiku-bnb.onrender.com/reviews?house_id=${params.id}`
+    )
+    setReviews(result.data)
   }
 
   useEffect(() => {
     getReviews()
   }, [])
 
+  // passing reviews with map
   const reviewData = reviews.map((review, index) => (
     <Review key={index} review={review} />
   ))
@@ -39,7 +58,7 @@ function Reviews(props) {
               icon={faCommentDots}
               className="text-md text-gray-500 mr-2"
             />
-            {reviews.length} Reviews
+            {`${reviews.length} Reviews`}
           </div>
           <div className="flex gap-2">
             <div>
@@ -58,25 +77,40 @@ function Reviews(props) {
         </div>
         {reviewData}
       </div>
-      <div className="border border-gray-200 self-start my-5 p-4 rounded-md">
-        <div>Leave a Review</div>
-        <div className="mt-2 text-sm">
-          <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} /> 0
+      {/* Thank you message */}
+      {hasBeenReviewed ? (
+        <div className=" bg-emerald-50 text-center rounded p-6 mt-3 h-20">
+          Thank you for your review!
         </div>
-        <form>
-          <div className=" text-sm justify-center mt-3">
-            <textarea
-              className=" border w-full col-span-8 text-sm text-gray-300 pb-16 pr-16"
-              placeholder="Please leave a review for this house..."
-            ></textarea>
+      ) : (
+        <div className="border border-gray-200 self-start my-5 p-4 rounded-md">
+          <div>Leave a Review</div>
+          <div className="mt-2 text-sm">
+            <FontAwesomeIcon icon={faStar} style={{ color: '#FFD43B' }} />0
           </div>
-          <div className=" text-sm text-white mt-1">
-            <button className=" border bg-rose-400 p-2 rounded-md">
-              Submit Review
-            </button>
-          </div>
-        </form>
-      </div>
+          <form onSubmit={createReview}>
+            <div className=" py-2 text-sm flex justify-start">
+              <input type="radio" name="rating" value="1" className="mr-1" />
+              <input type="radio" name="rating" value="2" className="mr-1" />
+              <input type="radio" name="rating" value="3" className="mr-1" />
+              <input type="radio" name="rating" value="4" className="mr-1" />
+              <input type="radio" name="rating" value="5" className="mr-1" />
+            </div>
+            <div className=" text-sm justify-start mt-3">
+              <textarea
+                name="content"
+                className=" border w-full col-span-8 text-sm text-gray-300 pb-16 pr-16"
+                placeholder="Please leave a review for this house..."
+              ></textarea>
+            </div>
+            <div className=" text-sm text-white mt-1">
+              <button className=" border bg-rose-400 p-2 rounded-md">
+                Submit Review
+              </button>
+            </div>
+          </form>
+        </div>
+      )}
     </div>
   )
 }
@@ -116,7 +150,7 @@ function Review(props) {
           </div>
           <div className="ml-2">{props.review.rating}</div>
         </div>
-        <div>{props.review.comment}</div>
+        <div>{props.review.content}</div>
       </div>
     </div>
   )
