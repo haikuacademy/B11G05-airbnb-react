@@ -9,6 +9,7 @@ function HouseCard(props) {
   const isListing = props.isListing
 
   console.log(props)
+  console.log(booking)
   return (
     //  used a template literal (${props.house.house_id}) to dynamically generate the URL based on the house_id value from props
     <Link to={`/houses/${props.house.house_id}`}>
@@ -57,10 +58,10 @@ function HouseCard(props) {
         {isBooking && (
           <div className="bg-green-50 p-2 mt-2 flex flex-col items-center">
             <p className="text-black">
-              {booking.startDate} - {booking.endDate}
+              {booking.from_date} - {booking.to_date}
             </p>
             <p className="text-black font-bold">
-              {booking.totalNights} nights = {booking.totalPrice}
+              {booking.nights} nights = {booking.price_total}
             </p>
           </div>
         )}
