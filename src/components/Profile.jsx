@@ -1,15 +1,46 @@
 import Nav from './Nav'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
 
 function Profile() {
   // Data
-  const user = {
-    firstName: 'Juan',
-    lastName: 'Dela Cruz',
-    email: 'jdelacruz@gmail.com',
-    profile_picture: 'https://randomuser.me/api/portraits/men/81.jpg'
-  }
-  // Create Hook for useState
+
+  const [user, setUser] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    profile_picture: ''
+  })
+
+  useEffect(() => {
+    // Function to fetch user data
+    const fetchUserData = async () => {
+      try {
+        // Make GET request to fetch user data
+        const response = await axios.get(
+          'https://haiku-bnb.onrender.com/profile'
+        )
+        // Set user state with fetched data
+        setUser(response.data)
+      } catch (error) {
+        console.error('Error fetching user data:', error)
+      }
+    }
+    // Call fetchUserData function
+    fetchUserData()
+  }, []) // Empty dependency array to run effect only once on mount
+
+  // Update picture state
+  // const handlePictureChange = (event) => {
+  //   setPicture(event.target.value)
+  // }
+  // const user = {
+  //   firstName: 'Juan',
+  //   lastName: 'Dela Cruz',
+  //   email: 'jdelacruz@gmail.com',
+  //   profile_picture: 'https://randomuser.me/api/portraits/men/81.jpg'
+  // }
+  // // Create Hook for useState
   const [picture, setPicture] = useState(user.profile_picture)
 
   return (
