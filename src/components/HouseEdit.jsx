@@ -8,7 +8,7 @@ function HouseEdit() {
   //Create an async function getHouse that uses axios to get a house object from the API url /houses/1
   // then sets the object as the value of the house state variable
   const getHouse = async () => {
-    let { data } = await axios.get(`https://haiku-bnb.onrender.com/houses/1`)
+    let { data } = await axios.get(`https://haiku-bnb.onrender.com/houses/`)
     console.log('data------->', data)
     setHouse(data)
   }

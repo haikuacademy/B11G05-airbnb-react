@@ -11,7 +11,7 @@ function HouseCard(props) {
   console.log(props)
   return (
     //  used a template literal (${props.house.house_id}) to dynamically generate the URL based on the house_id value from props
-    <Link to={`/houses/${props.house.house_id}`}>
+    <Link to={`/houses/${booking.house_id}`}>
       <div className="border border-gray-300 rounded-md pb-5 hover:shadow">
         {/* photo */}
         <div className="w-70">
@@ -65,7 +65,7 @@ function HouseCard(props) {
         {/* for buttons in Listing Card */}
         {isListing && (
           <div className="flex justify-start px-2 gap-1 mt-3 ml-1">
-            <Link to="/houses/:id">
+            <Link to={`/houses/${booking.house_id}`}>
               <button className=" border border-gray-200 px-2 rounded-md">
                 View
               </button>
