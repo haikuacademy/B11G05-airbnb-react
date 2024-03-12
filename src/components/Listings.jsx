@@ -1,20 +1,13 @@
 import Nav from './Nav'
 import HouseCard from './HouseCard'
 import axios from 'axios'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 axios.defaults.withCredentials = true
 
 function Listings() {
   const [listings, setListings] = useState([])
   const [error, setError] = useState(false)
-  const [formValues, setFormValues] = useState({
-    location: '',
-    rooms: 0,
-    bathrooms: 0,
-    price: 0,
-    description: '',
-    photos: ['', '', '', '', '', '', '', '', '']
-  })
+
   //post request for form
   const createHouse = async (e) => {
     try {
@@ -38,19 +31,28 @@ function Listings() {
       } else {
         setListings([response.data, ...listings])
         // Reset the form values after submitting the form
-        setFormValues({
-          location: '',
-          rooms: 0,
-          bathrooms: 0,
-          price: 0,
-          description: '',
-          photos: ['', '', '', '', '', '', '', '', '']
-        })
+        e.target.reset()
+        setError(false)
       }
     } catch (error) {
       console.error('An error occurred:', error.message)
     }
   }
+
+  //get listings
+  const getListings = async (e) => {
+    try {
+      let response = await axios.get('https://haiku-bnb.onrender.com/listings')
+      console.log(response.data)
+      setListings(response.data)
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
+  // Use the useEffect hook to trigger the getHouse function when the component loads
+  useEffect(() => {
+    getListings()
+  }, [])
 
   // let listings = [
   //   {
