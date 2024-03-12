@@ -51,6 +51,7 @@ function Reviews(props) {
 
   useEffect(() => {
     getReviews()
+    // eslint-disable-next-line
   }, [])
 
   // passing reviews with map

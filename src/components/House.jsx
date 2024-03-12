@@ -28,10 +28,12 @@ function House() {
   // Use the useEffect hook to trigger the getHouse function when the component loads
   useEffect(() => {
     getHouse()
+    // eslint-disable-next-line
   }, [])
 
   useEffect(() => {
     console.log('house---->', house)
+    // eslint-disable-next-line
   }, [loading])
 
   return (

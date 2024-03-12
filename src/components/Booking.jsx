@@ -65,6 +65,7 @@ function Booking({ house }) {
     if (house) {
       setTotalPrice(nights * house.price)
     }
+    // eslint-disable-next-line
   }, [nights])
 
   return (
