@@ -1,30 +1,83 @@
+import { useEffect, useState } from 'react'
 import Nav from './Nav'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+axios.defaults.withCredentials = true
 
 function Profile() {
-  // Data
-  const user = {
-    firstName: 'Juan',
-    lastName: 'Dela Cruz',
-    email: 'jdelacruz@gmail.com',
-    profile_picture: 'https://randomuser.me/api/portraits/men/81.jpg'
+  //State
+  const [user, setUser] = useState({})
+  const [picture, setPicture] = useState('')
+  const navigate = useNavigate()
+
+  const getData = async () => {
+    try {
+      const response = await axios.get('https://haiku-bnb.onrender.com/profile')
+      console.log('userdata', response.data)
+      if (response.data.error) {
+        navigate('/')
+      } else {
+        setUser(response.data)
+        setPicture(response.data.picture)
+      }
+    } catch (e) {
+      alert(e.message)
+    }
   }
 
+  const modifyUser = async (e) => {
+    e.preventDefault()
+    // alert('working')
+    const form = new FormData(e.target)
+    const formObj = Object.fromEntries(form.entries())
+    console.log(formObj)
+    try {
+      const { data } = await axios.patch(
+        'https://haiku-bnb.onrender.com/profile',
+        formObj
+      )
+      console.log(data)
+      alert('your changes have been save')
+    } catch (e) {
+      alert(e.message)
+    }
+  }
+
+  const logout = async (e) => {
+    e.preventDefault()
+    try {
+      const { data } = await axios.get('https://haiku-bnb.onrender.com/logout')
+      console.log({ data })
+      localStorage.removeItem('isLoggedIn')
+      navigate('/')
+    } catch (err) {
+      alert(err.message)
+    }
+  }
+
+  useEffect(() => {
+    getData()
+  }, [])
   return (
     <div className="container mx-auto">
       <Nav />
       <div className="border border-gray-300 p-5 rounded-md">
-        <form>
+        <form onSubmit={modifyUser}>
           <div className="text-lg font-bold ">Your Profile</div>
           {/* Create Profile photo & Photo route */}
           <div className="flex gap-2 mt-4">
             <img
-              src="https://randomuser.me/api/portraits/men/81.jpg"
+              name="picture"
+              defaultValue={picture}
+              src={picture}
               alt="John Lopez"
               className="border rounded-full  w-16"
             />
             <div className="flex justify-center w-full self-center">
               <input
+                defaultValue={picture}
                 type="text"
+                value={user.profile_picture}
                 placeholder={user.profile_picture}
                 className="border border-gray-200 w-full p-2 rounded-md"
               />
@@ -33,6 +86,8 @@ function Profile() {
           {/* First name */}
           <div className="text-gray-400 pt-4">First Name</div>
           <input
+            defaultValue={user.first_name}
+            name="first_name"
             type="text"
             placeholder={user.firstName}
             className="border border-gray-200 w-full p-2 rounded-md placeholder-black "
@@ -40,6 +95,8 @@ function Profile() {
           {/* Last name */}
           <div className="text-gray-400 pt-2">Last Name</div>
           <input
+            defaultValue={user.last_name}
+            name="last_name"
             type="text"
             placeholder={user.lastName}
             className="border border-gray-200 w-full p-2 rounded-md placeholder-black"
@@ -47,8 +104,10 @@ function Profile() {
           {/* Email */}
           <div className="text-gray-400 pt-2">Email</div>
           <input
+            name="email"
             type="Email"
             placeholder={user.email}
+            defaultValue={user.email_name}
             className="border border-gray-200 w-full p-2 rounded-md placeholder-black"
           />
           {/* Buttons */}
@@ -56,7 +115,10 @@ function Profile() {
             <button className="border rounded bg-rose-400 hover:bg-rose-500 text-white p-2">
               Save Changes
             </button>
-            <button className="border rounded bg-white hover:bg-gray-100 text-black py-2 px-4">
+            <button
+              onClick={logout}
+              className="border rounded bg-white hover:bg-gray-100 text-black py-2 px-4"
+            >
               Logout
             </button>
           </div>

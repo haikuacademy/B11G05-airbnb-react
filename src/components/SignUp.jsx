@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+axios.defaults.withCredentials = true
 
 function SignUp() {
   //create a "state" variable validEmail validPassword and error message
@@ -50,6 +51,7 @@ function SignUp() {
       console.log(response.data.error)
       setError(response.data.error)
     } else {
+      localStorage.setItem('isLoggedIn', true)
       navigate('/')
     }
   }
