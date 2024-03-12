@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 function Booking({ house }) {
-  console.log(house)
   //creating variables for getting booking date
   const [startDate, setStartDate] = useState('')
   const [endDate, setEndDate] = useState('')
@@ -29,15 +28,12 @@ function Booking({ house }) {
       //get data from form from e.target
       const form = new FormData(e.target)
       let formObject = Object.fromEntries(form.entries())
-      console.log('formObject', formObject)
       //get house id from the props
       formObject.house_id = house.house_id
-      console.log('formObject with house_id', formObject)
       let response = await axios.post(
         'https://haiku-bnb.onrender.com/bookings',
         formObject
       )
-      console.log('response', response.data)
       //check if there's an error with booking date
       if (response.data.error) {
         setError(response.data.error)
