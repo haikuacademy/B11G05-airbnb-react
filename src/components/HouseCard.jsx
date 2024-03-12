@@ -70,7 +70,8 @@ function HouseCard(props) {
                 View
               </button>
             </Link>
-            <Link to="/houses/:id/edit">
+            {/* <Link to={`/houses/${booking.house_id}/edit`}> */}
+            <Link to="/houses/1/edit">
               <button className=" border border-gray-200 px-2 rounded-md">
                 Edit
               </button>
