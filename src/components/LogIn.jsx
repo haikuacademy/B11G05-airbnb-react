@@ -42,7 +42,7 @@ function LogIn() {
       setError(response.data.error)
       console.log('response', response.data.error)
       console.log(response.data.error)
-      // console.log(error)
+      // give jwt token when logging in
     } else {
       localStorage.setItem('isLoggedIn', true)
       navigate('/')
