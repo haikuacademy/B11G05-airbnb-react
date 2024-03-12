@@ -9,7 +9,6 @@ function HouseCard(props) {
   const isListing = props.isListing
 
   console.log(props)
-  console.log(booking)
   return (
     //  used a template literal (${props.house.house_id}) to dynamically generate the URL based on the house_id value from props
     <Link to={`/houses/${props.house.house_id}`}>
@@ -17,35 +16,33 @@ function HouseCard(props) {
         {/* photo */}
         <div className="w-70">
           <img
-            src={`${props.house.photo}`}
-            alt={`house in ${props.house.location}`}
+            src={`${booking.photo}`}
+            alt={`house in ${booking.location}`}
             className="w-full rounded-tr-md rounded-tl-md"
           />
         </div>
         {/* location, room, and price */}
         <div className=" pl-5 pr-5">
-          <div className=" text-lg font-bold">{props.house.location}</div>
-          <div className=" text-gray-500">{`${props.house.rooms} rooms • ${props.house.bathrooms} bathrooms`}</div>
-          <div className=" text-xl font-bold">{`$ ${props.house.price}`}</div>
+          <div className=" text-lg font-bold">{booking.location}</div>
+          <div className=" text-gray-500">{`${booking.rooms} rooms • ${booking.bathrooms} bathrooms`}</div>
+          <div className=" text-xl font-bold">{`$ ${booking.price}`}</div>
           <div className="flex justify-between mt-3">
             {/* ratings and stars */}
             <span className="flex gap-x-1">
               <div>
-                {[...new Array(Math.floor(props.house.rating))].map(
-                  (i, index) => (
-                    <FontAwesomeIcon
-                      icon={faStar}
-                      style={{ color: '#FFD43B' }}
-                      key={index}
-                    />
-                  )
-                )}
+                {[...new Array(Math.floor(booking.rating))].map((i, index) => (
+                  <FontAwesomeIcon
+                    icon={faStar}
+                    style={{ color: '#FFD43B' }}
+                    key={index}
+                  />
+                ))}
               </div>
-              <div>{props.house.rating}</div>
+              <div>{booking.rating}</div>
             </span>
             {/* total reviews */}
             <span className="flex gap-x-1">
-              <div>{props.house.reviews}</div>
+              <div>{booking.reviews}</div>
               <div>
                 <FontAwesomeIcon
                   icon={faCommentDots}
