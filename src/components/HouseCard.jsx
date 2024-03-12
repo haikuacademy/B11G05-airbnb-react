@@ -5,6 +5,7 @@ import { faCommentDots } from '@fortawesome/free-regular-svg-icons'
 
 function HouseCard(props) {
   const booking = props.house
+  console.log(props)
   const isBooking = props.isBooking
   const isListing = props.isListing
 
@@ -70,8 +71,8 @@ function HouseCard(props) {
                 View
               </button>
             </Link>
-            {/* <Link to={`/houses/${booking.house_id}/edit`}> */}
-            <Link to="/houses/1/edit">
+            <Link to={`/houses/${booking.house_id}/edit`}>
+              {/* <Link to="/houses//edit"> */}
               <button className=" border border-gray-200 px-2 rounded-md">
                 Edit
               </button>

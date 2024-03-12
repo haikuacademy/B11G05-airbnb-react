@@ -1,14 +1,22 @@
 import Nav from './Nav'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
 
 function HouseEdit() {
-  const [house, setHouse] = useState({})
+  //params
+  const params = useParams()
+  console.log(params)
+
+  const [house, setHouse] = useState({
+    images: []
+  })
   //Create an async function getHouse that uses axios to get a house object from the API url /houses/1
   // then sets the object as the value of the house state variable
   const getHouse = async () => {
-    let { data } = await axios.get(`https://haiku-bnb.onrender.com/houses/`)
+    let { data } = await axios.get(
+      `https://haiku-bnb.onrender.com/houses/${params.id}`
+    )
     console.log('data------->', data)
     setHouse(data)
   }
