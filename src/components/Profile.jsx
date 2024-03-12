@@ -8,6 +8,7 @@ function Profile() {
   //State
   const [user, setUser] = useState({})
   const [picture, setPicture] = useState('')
+  const [message, setMessage] = useState(false)
   const navigate = useNavigate()
 
   const getData = async () => {
@@ -32,17 +33,21 @@ function Profile() {
     const formObj = Object.fromEntries(form.entries())
     console.log(formObj)
     try {
-      const { data } = await axios.patch(
+      const response = await axios.patch(
         'https://haiku-bnb.onrender.com/profile',
         formObj
       )
-      console.log(data)
-      alert('your changes have been save')
+      console.log('patch response', response.data)
+      setUser(response.data)
+      setPicture(response.data.picture)
+      setMessage(true)
+      // alert('your changes have been save')
     } catch (e) {
       alert(e.message)
     }
   }
 
+  //remove jwt token when logout with local storage
   const logout = async (e) => {
     e.preventDefault()
     try {
@@ -115,6 +120,11 @@ function Profile() {
             <button className="border rounded bg-rose-400 hover:bg-rose-500 text-white p-2">
               Save Changes
             </button>
+            {message ? (
+              <div className=" text-xs text-green-600">
+                'your changes have been save'
+              </div>
+            ) : null}
             <button
               onClick={logout}
               className="border rounded bg-white hover:bg-gray-100 text-black py-2 px-4"
