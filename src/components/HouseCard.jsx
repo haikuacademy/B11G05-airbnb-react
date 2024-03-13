@@ -7,7 +7,12 @@ function HouseCard(props) {
   const booking = props.house
   const isBooking = props.isBooking
   const isListing = props.isListing
+<<<<<<< Updated upstream
 
+=======
+  console.log(props)
+  console.log(booking.house_id)
+>>>>>>> Stashed changes
   return (
     //  used a template literal (${props.house.house_id}) to dynamically generate the URL based on the house_id value from props
     <Link to={`/houses/${props.house.house_id}`}>
@@ -20,6 +25,7 @@ function HouseCard(props) {
             className="w-full rounded-tr-md rounded-tl-md"
           />
         </div>
+
         {/* location, room, and price */}
         <div className=" pl-5 pr-5">
           <div className=" text-lg font-bold">{props.house.location}</div>
@@ -41,6 +47,7 @@ function HouseCard(props) {
               </div>
               <div>{props.house.rating}</div>
             </span>
+
             {/* total reviews */}
             <span className="flex gap-x-1">
               <div>{props.house.reviews}</div>
@@ -63,15 +70,16 @@ function HouseCard(props) {
             </p>
           </div>
         )}
+
         {/* for buttons in Listing Card */}
         {isListing && (
           <div className="flex justify-start px-2 gap-1 mt-3 ml-1">
-            <Link to="/houses/:id">
+            <Link to={`/houses/${booking.house_id}`}>
               <button className=" border border-gray-200 px-2 rounded-md">
                 View
               </button>
             </Link>
-            <Link to="/houses/:id/edit">
+            <Link to={`/houses/${booking.house_id}/edit`}>
               <button className=" border border-gray-200 px-2 rounded-md">
                 Edit
               </button>
