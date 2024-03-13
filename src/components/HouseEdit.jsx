@@ -41,10 +41,6 @@ function HouseEdit() {
       formObj.photos = form.getAll('images')
       formObj.house_id = params
       console.log('formObject with images', formObj)
-
-      console.log('type of price', typeof formObj.price)
-      formObj.price = Number(formObj.price)
-      console.log('type of price', typeof formObj.price)
       let response = await axios.patch(
         `https://haiku-bnb.onrender.com/houses/${params.id}`,
         formObj
