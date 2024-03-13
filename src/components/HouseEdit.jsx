@@ -1,12 +1,15 @@
 import Nav from './Nav'
 import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 
 function HouseEdit() {
   //params
   const params = useParams()
   console.log(params)
+  // declare useNavigate
+  const navigate = useNavigate()
 
   const [house, setHouse] = useState({
     images: []
@@ -25,10 +28,37 @@ function HouseEdit() {
     getHouse()
   }, [])
 
+  //update the data with patch
+  const updateHouse = async (e) => {
+    //1. prevent browser from reload
+    try {
+      e.preventDefault()
+      //2 get data from form from e.target
+      const form = new FormData(e.target)
+      const formObj = Object.fromEntries(form.entries())
+      console.log(formObj)
+      //retrieves all 'images' field in an array of strings
+      formObj.photos = form.getAll('images')
+      formObj.house_id = params
+      console.log('formObject with photos', formObj)
+      let response = await axios.patch(
+        `https://haiku-bnb.onrender.com/houses/${params.id}`,
+        formObj
+      )
+      console.log('patch response', response.data)
+      setHouse(response.data)
+      navigate('/')
+    } catch (e) {
+      alert(e.message)
+    }
+  }
+  useEffect(() => {
+    updateHouse()
+  }, [])
   return (
     <div className="container mx-auto">
       <Nav />
-      <form>
+      <form onSubmit={updateHouse}>
         <div className="border border-gray-200 p-2 rounded-md mt-2">
           <div className="grid gap-32 grid-cols-2 ">
             {/* col 1 */}
@@ -36,30 +66,35 @@ function HouseEdit() {
               <div>Edit your listing</div>
               <div className=" text-gray-400 mt-2 text-sm">Location</div>
               <input
+                name="location"
                 type="text"
                 placeholder={house.location}
                 className="border border-gray-200 rounded-md p-2 w-full placeholder-black"
               />
               <div className=" text-gray-400 mt-2 text-sm">Bedrooms</div>
               <input
+                name="rooms"
                 type="number"
                 placeholder={house.rooms}
                 className="border border-gray-200 rounded-md p-2 w-full placeholder-black"
               />
               <div className=" text-gray-400 mt-2 text-sm">Bathrooms</div>
               <input
+                name="bathrooms"
                 type="number"
                 placeholder={house.bathrooms}
                 className="border border-gray-200 rounded-md p-2 w-full placeholder-black"
               />
               <div className=" text-gray-400 mt-2 text-sm">Price per Night</div>
               <input
+                name="price"
                 type="number"
                 placeholder={house.price}
                 className="border border-gray-200 rounded-md p-2 w-full placeholder-black"
               />
               <div className=" text-gray-400 mt-2 text-sm">Description</div>
               <textarea
+                name="descriptions"
                 className="border border-gray-200 rounded-md p-2 w-full text-sm"
                 rows="4"
               >
@@ -70,46 +105,55 @@ function HouseEdit() {
             <div>
               <div className=" text-gray-400 mt-2 text-sm">Photos</div>
               <input
+                name="images"
                 type="text"
                 placeholder={house.images[0]}
                 className="border border-gray-200 rounded-md p-2 w-full placeholder-black"
               />
               <input
+                name="images"
                 type="text"
                 placeholder={house.images[1]}
                 className="border border-gray-200 rounded-md p-2 w-full mt-2 placeholder-black"
               />
               <input
+                name="images"
                 type="text"
                 placeholder={house.images[2]}
                 className="border border-gray-200 rounded-md p-2 w-full mt-2 placeholder-black"
               />
               <input
+                name="images"
                 type="text"
                 placeholder={house.images[3]}
                 className="border border-gray-200 rounded-md p-2 w-full mt-2 placeholder-black"
               />
               <input
+                name="images"
                 type="text"
                 placeholder={house.images[4]}
                 className="border border-gray-200 rounded-md p-2 w-full mt-2 placeholder-black"
               />
               <input
+                name="images"
                 type="text"
                 placeholder={house.images[5]}
                 className="border border-gray-200 rounded-md p-2 w-full mt-2 placeholder-black"
               />
               <input
+                name="images"
                 type="text"
                 placeholder={house.images[6]}
                 className="border border-gray-200 rounded-md p-2 w-full mt-2 placeholder-black"
               />
               <input
+                name="images"
                 type="text"
                 placeholder={house.images[7]}
                 className="border border-gray-200 rounded-md p-2 w-full mt-2 placeholder-black"
               />
               <input
+                name="images"
                 type="text"
                 placeholder={house.images[8]}
                 className="border border-gray-200 rounded-md p-2 w-full mt-2 placeholder-black"
