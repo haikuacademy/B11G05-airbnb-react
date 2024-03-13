@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import axios from 'axios'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+axios.defaults.withCredentials = true
 
 function LogIn() {
   const [error, setError] = useState('')
@@ -18,6 +19,7 @@ function LogIn() {
     if (response.data.error) {
       setError(response.data.error)
     } else {
+      localStorage.setItem('isLoggedIn', true)
       navigate('/')
     }
   }

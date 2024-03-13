@@ -1,7 +1,11 @@
 import Nav from './Nav'
 import { useState } from 'react'
+import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
+axios.defaults.withCredentials = true
 
 function Profile() {
+  const navigate = useNavigate()
   // Data
   const user = {
     firstName: 'Juan',
@@ -11,6 +15,18 @@ function Profile() {
   }
   // Create Hook for useState
   const [picture, setPicture] = useState(user.profile_picture)
+  //remove jwt token when logging out with local storage
+  const logout = async (e) => {
+    e.preventDefault()
+    try {
+      const { data } = await axios.get('https://haiku-bnb.onrender.com/logout')
+      console.log({ data })
+      localStorage.removeItem('isLoggedIn')
+      navigate('/')
+    } catch (err) {
+      alert(err.message)
+    }
+  }
 
   return (
     <div className="container mx-auto">
@@ -62,7 +78,10 @@ function Profile() {
             <button className="border rounded bg-rose-400 hover:bg-rose-500 text-white p-2">
               Save Changes
             </button>
-            <button className="border rounded bg-white hover:bg-gray-100 text-black py-2 px-4">
+            <button
+              onClick={logout}
+              className="border rounded bg-white hover:bg-gray-100 text-black py-2 px-4"
+            >
               Logout
             </button>
           </div>
