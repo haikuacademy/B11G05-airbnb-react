@@ -2,6 +2,7 @@ import Nav from './Nav'
 import { Link } from 'react-router-dom'
 
 function HouseEdit() {
+  const isLoggedIn = localStorage.getItem('isLoggedIn')
   const house = {
     location: 'Phuket, Thailand',
     rooms: 2,
@@ -146,3 +147,11 @@ function HouseEdit() {
   )
 }
 export default HouseEdit
+
+//  {isLoggedIn ? (
+//           <>
+//             <Link to="/bookings">
+//               <button className="border border-gray-300 rounded-md p-2">
+//                 My Bookings
+//               </button>
+//             </Link>
