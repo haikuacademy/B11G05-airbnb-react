@@ -66,12 +66,12 @@ function HouseCard(props) {
         {/* for buttons in Listing Card */}
         {isListing && (
           <div className="flex justify-start px-2 gap-1 mt-3 ml-1">
-            <Link to="/houses/:id">
+            <Link to={`/houses/${booking.house_id}`}>
               <button className=" border border-gray-200 px-2 rounded-md">
                 View
               </button>
             </Link>
-            <Link to="/houses/:id/edit">
+            <Link to={`/houses/${booking.house_id}/edit`}>
               <button className=" border border-gray-200 px-2 rounded-md">
                 Edit
               </button>
