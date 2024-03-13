@@ -1,31 +1,25 @@
 import Nav from './Nav'
 import HouseCard from './HouseCard'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 function Listings() {
-  const [listings, setListings] = useState([
-    {
-      location: 'Phuket, Thailand',
-      rooms: 2,
-      bathrooms: 2,
-      price: 120,
-      rating: 4.5,
-      reviews: 34,
-      photo:
-        'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_02.png'
-    },
-    {
-      location: 'Bali, Indonesia',
-      rooms: 3,
-      bathrooms: 2,
-      price: 190,
-      rating: 5,
-      reviews: 12,
-      photo:
-        'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_08.png'
+  const [listings, setListings] = useState([])
+
+  useEffect(() => {
+    async function fetchListings() {
+      try {
+        const response = await axios.get(
+          'https://haiku-bnb.onrender.com/listings'
+        )
+        setListings(response.data)
+      } catch (error) {
+        console.error('Error fetching listings:', error)
+      }
     }
-  ])
+
+    fetchListings()
+  }, [])
 
   const createHouse = async (event) => {
     event.preventDefault() // Prevent page reload
