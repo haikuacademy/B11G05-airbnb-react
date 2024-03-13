@@ -3,6 +3,8 @@ import axios from 'axios'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+axios.defaults.withCredentials = true
+
 function LogIn() {
   const [error, setError] = useState('')
   const navigate = useNavigate()
@@ -73,5 +75,3 @@ function LogIn() {
 }
 
 export default LogIn
-
-axios.defaults.withCredentials = true
