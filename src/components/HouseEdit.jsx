@@ -60,7 +60,7 @@ function HouseEdit() {
   return (
     <div className="container mx-auto">
       <Nav />
-      <form onSubmit={(e) => updateHouse(e)}>
+      <form onSubmit={updateHouse}>
         <div className="border border-gray-200 p-2 rounded-md mt-2">
           <div className="grid gap-32 grid-cols-2 ">
             {/* col 1 */}
