@@ -2,6 +2,9 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+
+axios.defaults.withCredentials = true
+
 function SignUp() {
   //create a "state" variable validEmail validPassword and error message
   const [validEmail, setValidEmail] = useState(true)
@@ -139,5 +142,3 @@ function SignUp() {
 }
 
 export default SignUp
-
-axios.defaults.withCredentials = true
