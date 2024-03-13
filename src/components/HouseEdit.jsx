@@ -1,7 +1,11 @@
 import Nav from './Nav'
 import { Link } from 'react-router-dom'
+import axios from 'axios'
+import { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 
 function HouseEdit() {
+<<<<<<< Updated upstream
   const isLoggedIn = localStorage.getItem('isLoggedIn')
   const house = {
     location: 'Phuket, Thailand',
@@ -38,7 +42,57 @@ function HouseEdit() {
       'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_08.png',
       'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_09.png'
     ]
+=======
+  const [house, setHouse] = useState({})
+  const params = useParams()
+  const getHouse = async () => {
+    let response = await axios.get(
+      `https://haibu-bnb.onrender.com/houses${params.id}`
+    )
+    console.log('response', response)
+    setHouse(response.data)
+>>>>>>> Stashed changes
   }
+  useEffect(() => {
+    getHouse()
+  }, [])
+
+  // const house = {
+  //   location: 'Phuket, Thailand',
+  //   rooms: 2,
+  //   bathrooms: 2,
+  //   description: `Nestled on a serene beachfront, this charming Airbnb house offers a
+  //           picturesque escape. The exterior boasts a classic beach house
+  //           aesthetic with weathered wood siding and a spacious wraparound deck,
+  //           perfect for savoring the ocean breeze. Inside, you're greeted by an
+  //           open-concept living area bathed in natural light, complemented by
+  //           cozy furnishings and nautical accents. The house features three
+  //           comfortable bedrooms, each with a unique coastal theme, and two
+  //           modern bathrooms. The fully equipped kitchen opens to a dining area
+  //           that's ideal for intimate meals or entertaining guests. Large glass
+  //           doors in the living room lead to the deck, where you can enjoy
+  //           stunning sunset views over the ocean. This idyllic retreat is a
+  //           stone's throw away from the soft sandy beach, making it the perfect
+  //           spot for beach lovers and those seeking a tranquil getaway.`,
+  //   price: 120,
+  //   rating: 4.5,
+  //   host: {
+  //     firstName: 'Linda',
+  //     lastName: 'Smith',
+  //     picture: 'https://randomuser.me/api/portraits/women/85.jpg'
+  //   },
+  //   images: [
+  //     'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_01.png',
+  //     'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295026/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_02.png',
+  //     'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_03.png',
+  //     'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_04.png',
+  //     'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_05.png',
+  //     'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_06.png',
+  //     'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_07.png',
+  //     'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_08.png',
+  //     'https://res.cloudinary.com/dsko6ntfj/image/upload/v1640295019/portal/web%20development%20beginners/05%20Project%20Airbnb/house%2001/house_01_09.png'
+  //   ]
+  // }
   return (
     <div className="container mx-auto">
       <Nav />
