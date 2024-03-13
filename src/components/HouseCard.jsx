@@ -29,7 +29,7 @@ function HouseCard(props) {
             {/* ratings and stars */}
             <span className="flex gap-x-1">
               <div>
-                {[...new Array(Math.floor(props.house.rating))].map(
+                {Array.from({ length: Math.floor(props.house.rating) }).map(
                   (i, index) => (
                     <FontAwesomeIcon
                       icon={faStar}
