@@ -10,6 +10,7 @@ function HouseCard(props) {
   const isListing = props.isListing
 
   console.log(props)
+  console.log('house id', booking.house_id)
   return (
     //  used a template literal (${props.house.house_id}) to dynamically generate the URL based on the house_id value from props
     <Link to={`/houses/${booking.house_id}`}>

@@ -40,25 +40,27 @@ function HouseEdit() {
       //retrieves all 'images' field in an array of strings
       formObj.photos = form.getAll('images')
       formObj.house_id = params
-      console.log('formObject with photos', formObj)
+      console.log('formObject with images', formObj)
+
+      console.log('type of price', typeof formObj.price)
+      formObj.price = Number(formObj.price)
+      console.log('type of price', typeof formObj.price)
       let response = await axios.patch(
         `https://haiku-bnb.onrender.com/houses/${params.id}`,
         formObj
       )
       console.log('patch response', response.data)
       setHouse(response.data)
-      navigate('/')
+      navigate(`/houses/${params.id}`)
     } catch (e) {
       alert(e.message)
     }
   }
-  useEffect(() => {
-    updateHouse()
-  }, [])
+
   return (
     <div className="container mx-auto">
       <Nav />
-      <form onSubmit={updateHouse}>
+      <form onSubmit={(e) => updateHouse(e)}>
         <div className="border border-gray-200 p-2 rounded-md mt-2">
           <div className="grid gap-32 grid-cols-2 ">
             {/* col 1 */}
@@ -66,6 +68,7 @@ function HouseEdit() {
               <div>Edit your listing</div>
               <div className=" text-gray-400 mt-2 text-sm">Location</div>
               <input
+                defaultValue={house.location}
                 name="location"
                 type="text"
                 placeholder={house.location}
@@ -73,6 +76,7 @@ function HouseEdit() {
               />
               <div className=" text-gray-400 mt-2 text-sm">Bedrooms</div>
               <input
+                defaultValue={house.rooms}
                 name="rooms"
                 type="number"
                 placeholder={house.rooms}
@@ -80,6 +84,7 @@ function HouseEdit() {
               />
               <div className=" text-gray-400 mt-2 text-sm">Bathrooms</div>
               <input
+                defaultValue={house.bathrooms}
                 name="bathrooms"
                 type="number"
                 placeholder={house.bathrooms}
@@ -87,6 +92,7 @@ function HouseEdit() {
               />
               <div className=" text-gray-400 mt-2 text-sm">Price per Night</div>
               <input
+                defaultValue={house.price}
                 name="price"
                 type="number"
                 placeholder={house.price}
@@ -94,12 +100,12 @@ function HouseEdit() {
               />
               <div className=" text-gray-400 mt-2 text-sm">Description</div>
               <textarea
-                name="descriptions"
+                defaultValue={house.description}
+                name="description"
                 className="border border-gray-200 rounded-md p-2 w-full text-sm"
                 rows="4"
-              >
-                {house.description}
-              </textarea>
+                placeholder={house.description}
+              ></textarea>
             </div>
             {/* col 2 */}
             <div>
@@ -107,55 +113,64 @@ function HouseEdit() {
               <input
                 name="images"
                 type="text"
-                placeholder={house.images[0]}
+                defaultValue={house.images && house.images[0]}
+                placeholder={house.images && house.images[0]}
                 className="border border-gray-200 rounded-md p-2 w-full placeholder-black"
               />
               <input
                 name="images"
                 type="text"
-                placeholder={house.images[1]}
+                defaultValue={house.images && house.images[1]}
+                placeholder={house.images && house.images[1]}
                 className="border border-gray-200 rounded-md p-2 w-full mt-2 placeholder-black"
               />
               <input
                 name="images"
                 type="text"
-                placeholder={house.images[2]}
+                defaultValue={house.images && house.images[2]}
+                placeholder={house.images && house.images[2]}
                 className="border border-gray-200 rounded-md p-2 w-full mt-2 placeholder-black"
               />
               <input
                 name="images"
                 type="text"
-                placeholder={house.images[3]}
+                defaultValue={house.images && house.images[3]}
+                placeholder={house.images && house.images[3]}
                 className="border border-gray-200 rounded-md p-2 w-full mt-2 placeholder-black"
               />
               <input
                 name="images"
                 type="text"
-                placeholder={house.images[4]}
+                defaultValue={house.images && house.images[4]}
+                placeholder={house.images && house.images[4]}
                 className="border border-gray-200 rounded-md p-2 w-full mt-2 placeholder-black"
               />
               <input
                 name="images"
                 type="text"
-                placeholder={house.images[5]}
+                defaultValue={house.images && house.images[5]}
+                placeholder={house.images && house.images[5]}
                 className="border border-gray-200 rounded-md p-2 w-full mt-2 placeholder-black"
               />
               <input
                 name="images"
                 type="text"
-                placeholder={house.images[6]}
+                defaultValue={house.images && house.images[6]}
+                placeholder={house.images && house.images[6]}
                 className="border border-gray-200 rounded-md p-2 w-full mt-2 placeholder-black"
               />
               <input
                 name="images"
                 type="text"
-                placeholder={house.images[7]}
+                defaultValue={house.images && house.images[7]}
+                placeholder={house.images && house.images[7]}
                 className="border border-gray-200 rounded-md p-2 w-full mt-2 placeholder-black"
               />
               <input
                 name="images"
                 type="text"
-                placeholder={house.images[8]}
+                defaultValue={house.images && house.images[8]}
+                placeholder={house.images && house.images[8]}
                 className="border border-gray-200 rounded-md p-2 w-full mt-2 placeholder-black"
               />
             </div>
