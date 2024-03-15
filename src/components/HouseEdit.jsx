@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
+axios.defaults.withCredentials = true
 
 function HouseEdit() {
   //params
@@ -23,10 +24,6 @@ function HouseEdit() {
     console.log('data------->', data)
     setHouse(data)
   }
-  // Use the useEffect hook to trigger the getHouse function when the component loads
-  useEffect(() => {
-    getHouse()
-  }, [])
 
   //update the data with patch
   const updateHouse = async (e) => {
@@ -52,6 +49,24 @@ function HouseEdit() {
       alert(e.message)
     }
   }
+
+  //function for delete button to delete house
+  const deleteHouse = async (e) => {
+    try {
+      const deleteResponse = await axios.delete(
+        `https://haiku-bnb.onrender.com/houses/${params.id}`
+      )
+      console.log('delete response', deleteResponse.data)
+      navigate('/listings')
+    } catch (e) {
+      alert(e.message)
+    }
+  }
+
+  // Use the useEffect hook to trigger the getHouse function when the component loads
+  useEffect(() => {
+    getHouse()
+  }, [])
 
   return (
     <div className="container mx-auto">
@@ -175,6 +190,14 @@ function HouseEdit() {
           <div className="flex justify-start gap-2 mt-2">
             <button className=" bg-rose-400 text-white rounded-md p-3">
               Save Changes
+            </button>
+            {/* This button DOES NOT submit the form */}
+            <button
+              type="button"
+              onClick={deleteHouse}
+              className="border border-gray-200 rounded-md py-3 px-6"
+            >
+              Delete House
             </button>
             <Link to="/listings" className="hover:text-rose-400">
               <button className="border border-gray-200 rounded-md py-3 px-6">
