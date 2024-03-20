@@ -51,17 +51,17 @@ function HouseEdit() {
   }
 
   //function for delete button to delete house
-  const deleteHouse = async (e) => {
-    try {
-      const deleteResponse = await axios.delete(
-        `https://haiku-bnb.onrender.com/houses/${params.id}`
-      )
-      console.log('delete response', deleteResponse.data)
-      navigate('/listings')
-    } catch (e) {
-      alert(e.message)
-    }
-  }
+  // const deleteHouse = async (e) => {
+  //   try {
+  //     const deleteResponse = await axios.delete(
+  //       `https://haiku-bnb.onrender.com/houses/${params.id}`
+  //     )
+  //     console.log('delete response', deleteResponse.data)
+  //     navigate('/listings')
+  //   } catch (e) {
+  //     alert(e.message)
+  //   }
+  // }
 
   // Use the useEffect hook to trigger the getHouse function when the component loads
   useEffect(() => {
@@ -192,13 +192,13 @@ function HouseEdit() {
               Save Changes
             </button>
             {/* This button DOES NOT submit the form */}
-            <button
+            {/* <button
               type="button"
               onClick={deleteHouse}
               className="border border-gray-200 rounded-md py-3 px-6"
             >
               Delete House
-            </button>
+            </button> */}
             <Link to="/listings" className="hover:text-rose-400">
               <button className="border border-gray-200 rounded-md py-3 px-6">
                 Cancel
