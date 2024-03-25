@@ -3,6 +3,8 @@ import HouseCard from './HouseCard'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
+axios.defaults.withCredentials = true
+
 function Listings() {
   const [listings, setListings] = useState([])
 
@@ -12,7 +14,12 @@ function Listings() {
         const response = await axios.get(
           'https://haiku-bnb.onrender.com/listings'
         )
-        setListings(response.data)
+        console.log('API response:', response.data)
+        if (Array.isArray(response.data)) {
+          setListings(response.data)
+        } else {
+          console.error('API response is not an array')
+        }
       } catch (error) {
         console.error('Error fetching listings:', error)
       }
